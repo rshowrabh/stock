@@ -20,4 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/category', App\Http\Controllers\CategoriesController::class);
+Route::resource('/category', App\Http\Controllers\CategoriesController::class)->middleware('auth');
+Route::resource('/stocks-in', App\Http\Controllers\StocksInController::class)->middleware('auth');
+Route::get('/category-list', [App\Http\Controllers\CategoriesController::class, 'list'])->middleware('auth')->name('category.list');

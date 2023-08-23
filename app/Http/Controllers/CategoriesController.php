@@ -7,6 +7,8 @@ use App\Models\Category;
 
 class CategoriesController extends Controller
 {
+
+    protected $table = \App\Models\Category::class;
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +17,9 @@ class CategoriesController extends Controller
     public function index()
     {
         
-        $datas = Category::paginate(10);
-        return view('category.index')->with(['datas' => $datas]);
+        $datas = $this->table::paginate(10);
+        $rank = $datas->firstItem();
+        return view('category.index')->with(['datas' => $datas, 'rank' => $rank]);
     }
 
     /**
@@ -40,7 +43,7 @@ class CategoriesController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:categories|min:5',
         ]);
-        $datas = Category::create($request->all());;
+        $datas = $this->table::create($request->all());;
         return redirect()->route('category.index')->with('message', 'Category Added');
     }
 
@@ -52,7 +55,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        $data = Category::find($id);
+        $data = $this->table::find($id);     
         return $data;
     }
 
@@ -64,7 +67,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $data = Category::find($id);
+        $data = $this->table::find($id);
         return view('category.edit')->with(['data' => $data]);
     }
 
@@ -80,7 +83,7 @@ class CategoriesController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:categories|min:5',
         ]);
-        $data=Category::findOrFail($id);
+        $data=$this->table::findOrFail($id);
         $data->update([
         'name'=>$request->name,
     ]);
@@ -95,8 +98,13 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $post = Category::find($id);
+        $post = $this->table::find($id);
         $post->delete();
         return redirect()->route('category.index')->with('message', 'Category Deleted');
+    }
+
+    public function list(){
+        $data = $this->table::all();
+        return response()->json($data);
     }
 }

@@ -35,20 +35,16 @@
             <tbody>
                 @foreach($datas as $data)
               <tr>
-                <th scope="row">{{$data->id}}</th>
+                <th scope="row">{{$rank++}}</th>
                 <td>{{$data->name}}</td>
                 <td><a href="{{route('category.edit', $data->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
-                <td>
-                  <form method="post" action="{{ route('category.destroy', $data->id) }}">
-                    <!-- here the '1' is the id of the post which you want to delete -->
-                
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                
-                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger" type="submit">Delete</button>
-                </form>  
-                </td>
-                
+                  <td>
+                    <form method="post" action="{{ route('category.destroy', $data->id) }}">               
+                      @csrf
+                      {{ method_field('DELETE') }}                
+                      <button onclick="return confirm('Delete {{$data->name}} ?')" class="btn btn-danger" type="submit">Delete</button>
+                  </form>  
+                  </td>               
               </tr>
               @endforeach
              
