@@ -47,7 +47,7 @@ class StocksInController extends Controller
             'quantity' => 'required',
             'price' => 'required',
         ]);
-        $datas = $this->table::create($request->all());;
+        $datas = \Auth::user()->stocksIn()->create($request->all());;
         return redirect()->route('stocks-in.index')->with('message', 'Stocks Added');
     }
 
@@ -93,8 +93,9 @@ class StocksInController extends Controller
             'quantity' => 'required',
             'price' => 'required',
         ]);
-        $data=$this->table::findOrFail($id);
-        $data->fill($request->all())->save();
+        
+        $data=\Auth::user()->stocksIn->findOrFail($id);
+        $data->fill(['user_id' => \Auth::id()] + $request->all())->save();
         return redirect()->route('stocks-in.index')->with('message', 'Stocks Updated');
     }
 

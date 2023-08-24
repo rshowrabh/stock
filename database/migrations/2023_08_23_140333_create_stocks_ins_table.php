@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('stocks_ins', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->integer('int_no');
             $table->integer('category_id')->unsigned();

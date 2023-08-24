@@ -12,6 +12,7 @@ class StocksIn extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
         'int_no',
         'date',
         'quantity',

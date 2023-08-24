@@ -15,8 +15,7 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {      
         $datas = $this->table::paginate(10);
         $rank = $datas->firstItem();
         return view('category.index')->with(['datas' => $datas, 'rank' => $rank]);
@@ -43,7 +42,7 @@ class CategoriesController extends Controller
         $validated = $request->validate([
             'name' => 'required|unique:categories|min:5',
         ]);
-        $datas = $this->table::create($request->all());;
+        $datas = \Auth::user()->category()->create($request->all());;
         return redirect()->route('category.index')->with('message', 'Category Added');
     }
 
@@ -86,6 +85,7 @@ class CategoriesController extends Controller
         $data=$this->table::findOrFail($id);
         $data->update([
         'name'=>$request->name,
+        'user_id' =>  \Auth::id(),
     ]);
         return redirect()->route('category.index')->with('message', 'Category Updated');
     }
