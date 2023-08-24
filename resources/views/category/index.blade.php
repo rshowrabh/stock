@@ -27,7 +27,7 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
+                <th scope="col">Category Name</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>

@@ -17,7 +17,7 @@
 </div>
 @enderror
         <input name="_method" type="hidden" value="PATCH">
-        <label class="form-label">Name</label>
+        <label class="form-label">Item Name</label>
         <input required name="name" value="{{$data->name}}" type="text" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Intendent No</label>
         <input required name="int_no" value="{{$data->int_no}}" type="number" class="form-control"  aria-describedby="nameHelp">

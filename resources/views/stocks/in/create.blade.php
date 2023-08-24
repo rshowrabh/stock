@@ -14,7 +14,7 @@
         @if($errors->any())
        {!! implode('', $errors->all('<div class="alert alert-danger" role="alert"><strong>:message</strong></div>')) !!}
         @endif
-        <label class="form-label">Name</label>
+        <label class="form-label">Item Name</label>
         <input required value="{{ old('name') }}" name="name"  type="text" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Intendent No</label>
         <input required value="{{ old('int_no') }}" name="int_no" type="number" class="form-control"  aria-describedby="nameHelp">

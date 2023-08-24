@@ -110,4 +110,19 @@ class StocksInController extends Controller
         $post->delete();
         return redirect()->route('stocks-in.index')->with('message', 'Stocks Deleted');
     }
+
+    public function search_name(Request $request){
+        $datas = $this->table::where('name', 'LIKE', "%{$request->search_name}%")->orderBy('date', 'DESC')->with('category')->paginate(10);
+        $rank = $datas->firstItem();
+        return view('stocks.in.index')->with(['datas' => $datas , 'rank' => $rank]);
+    }
+
+    public function search_date(Request $request){
+
+        $from = date($request->search_date_from);
+        $to = date($request->search_date_to);
+        $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('category')->paginate(10);
+        $rank = $datas->firstItem();
+        return view('stocks.in.index')->with(['datas' => $datas , 'rank' => $rank]);
+    }
 }

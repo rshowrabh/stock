@@ -18,16 +18,48 @@
 @enderror
 <div class="text-center">
     <main class="py-2">
-        <!-- Button trigger modal -->
-  <a href="{{route('stocks-in.create')}}"><button type="button" class="d-flex justify-content-left btn btn-primary">
-    Add New
-  </button></a>
+  <div class="container">
+    <div class="row">
+      <div class="col-2">
+        <a href="{{route('stocks-in.create')}}"><button type="button" class="d-flex justify-content-left btn btn-primary">
+          Add New
+        </button></a>
+      </div>
+      <div class="col-4">
+        <form action="{{route('search.name')}}" method="post">
+          @csrf
+          <div class="row">
+            <div class="col-8"><input required class="form-control" type="text" name="search_name"></div>
+            <div class="col-4"> <input class=" form-control btn btn-primary" type="submit" value="Search Name"></div>
+          </div>
+          
+         
+          </form>
+      </div>
+      <div class="col-6">
+        <form action="{{route('search.date')}}" method="post">
+          @csrf
+        <div class="row">
+          <div class="col">
+            <input required value="{{ old('search_date_from') }}" name="search_date_from" type="date" class="form-control" placeholder="First name" aria-label="First name">
+          </div>
+          <div class="col">
+            <input required value="{{ old('search_date_to') }}" name="search_date_to" type="date" class="form-control" placeholder="Last name" aria-label="Last name">
+          </div>
+          <div class="col">
+            <input type="Submit" class="form-control btn btn-primary" value="Search Date" aria-label="Last name">
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
         <div class="d-flex justify-content-center">
         <table class="table w-50 table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
+                <th scope="col">Item Name</th>
                 <th scope="col">Int No</th>
                 <th scope="col">Category</th>
                 <th scope="col">Date</th>
