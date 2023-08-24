@@ -18,19 +18,19 @@
 @enderror
         <input name="_method" type="hidden" value="PATCH">
         <label class="form-label">Name</label>
-        <input name="name" value="{{$data->name}}" type="text" class="form-control"  aria-describedby="nameHelp">
+        <input required name="name" value="{{$data->name}}" type="text" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Intendent No</label>
-        <input name="int_no" value="{{$data->int_no}}" type="number" class="form-control"  aria-describedby="nameHelp">
+        <input required name="int_no" value="{{$data->int_no}}" type="number" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Category</label>
-        <select name="category_id" id="sel_emp" class="form-select" aria-label="Default select example">
+        <select required name="category_id" id="sel_emp" class="form-select" aria-label="Default select example">
           <option value="{{$data->category_id}}" selected>{{$data->category->name}}</option>
         </select>
         <label class="form-label">Date</label>
-        <input name="date" value="{{$data->date}}" type="date" class="form-control"  aria-describedby="nameHelp">
+        <input required name="date" value="{{$data->date}}" type="date" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Qunatity</label>
-        <input name="quantity" value="{{$data->quantity}}" type="number" class="form-control"  aria-describedby="nameHelp">
+        <input required name="quantity" value="{{$data->quantity}}" type="number" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Price</label>
-        <input name="price" value="{{$data->price}}" type="number" class="form-control"  aria-describedby="nameHelp">
+        <input required name="price" value="{{$data->price}}" type="number" class="form-control"  aria-describedby="nameHelp">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -41,8 +41,7 @@
 </div>
 @push('scripts')
     <script>
-       jQuery(document).ready(function($){
-   
+       jQuery(document).ready(function($){  
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')

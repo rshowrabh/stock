@@ -15,19 +15,19 @@
        {!! implode('', $errors->all('<div class="alert alert-danger" role="alert"><strong>:message</strong></div>')) !!}
         @endif
         <label class="form-label">Name</label>
-        <input value="{{ old('name') }}" name="name"  type="text" class="form-control"  aria-describedby="nameHelp">
+        <input required value="{{ old('name') }}" name="name"  type="text" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Intendent No</label>
-        <input value="{{ old('int_no') }}" name="int_no" type="number" class="form-control"  aria-describedby="nameHelp">
+        <input required value="{{ old('int_no') }}" name="int_no" type="number" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Category</label>
-        <select name="category_id" id="sel_emp" class="form-select" aria-label="Default select example">
-          <option selected>Open this select menu</option>
+        <select required name="category_id" id="sel_emp" class="form-select" aria-label="Default select example">
+          <option value="" selected>Select Category</option>
         </select>
         <label class="form-label">Date</label>
-        <input value="{{ old('date') }}" name="date" type="date" class="form-control"  aria-describedby="nameHelp">
-        <label class="form-label">Qunatity</label>
-        <input value="{{ old('quantity') }}" name="quantity" type="number" class="form-control"  aria-describedby="nameHelp">
+        <input required value="{{ old('date') }}" name="date" type="date" class="form-control"  aria-describedby="nameHelp">
+        <label  class="form-label">Qunatity</label>
+        <input required value="{{ old('quantity') }}" name="quantity" type="number" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Price</label>
-        <input value="{{ old('price') }}" name="price"  type="number" class="form-control"  aria-describedby="nameHelp">
+        <input required value="{{ old('price') }}" name="price"  type="number" class="form-control"  aria-describedby="nameHelp">
 
         
       </div>
@@ -39,9 +39,8 @@
 @endsection
 </div>
 @push('scripts')
-
     <script>
-   jQuery(document).ready(function($){
+       jQuery(document).ready(function($){
    
         $.ajaxSetup({
             headers: {

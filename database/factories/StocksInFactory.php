@@ -19,12 +19,12 @@ class StocksInFactory extends Factory
     {
         return [
             'name' =>fake()->name(),
-            'int_no' =>random_int(0,100000),
-            'category_id' => random_int(0,20),
+            'int_no' =>random_int(1,100000),
+            'category_id' => random_int(1,20),
             'image_id' => '1',
             'date' => fake()->date(),
-            'quantity' => random_int(0,100),
-            'price' => random_int(0,1000),
+            'quantity' => random_int(1,100),
+            'price' => random_int(1,1000),
         ];
     }
 }

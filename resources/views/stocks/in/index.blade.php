@@ -44,7 +44,7 @@
                 <th scope="row">{{$rank++}}</th>
                 <td>{{$data->name}}</td>
                 <td>{{$data->int_no}}</td>
-                <td class="cat{{$data->category_id}}">A</td>
+                <td class="cat{{$data->category_id}}">{{$data->category->name}}</td>
                 <td>{{$data->date}}</td>
                 <td>{{$data->quantity}}</td>
                 <td>{{$data->price}}</td>
@@ -74,24 +74,3 @@
 
 
 @endsection
-@push('scripts')
-
-    <script>
-   jQuery(document).ready(function($){
-   
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-       $.ajax({url: "{{route('category.list')}}", success: function(result){
-        for (let i = 0; i < result.length; ++i) {
-            $('.cat'+result[i].id).html(result[i].name)
-            console.log(result[i].name)
-          }
-        }});
-       
-});
-    </script>
-@endpush

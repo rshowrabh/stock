@@ -18,7 +18,7 @@
 @enderror
         <input name="_method" type="hidden" value="PATCH">
         <label for="exampleInputEmail1" class="form-label">Category Name</label>
-        <input name="name" value="{{$data->name}}" type="name" class="form-control" id="exampleInputname1" aria-describedby="nameHelp">
+        <input required  name="name" value="{{$data->name}}" type="name" class="form-control" id="exampleInputname1" aria-describedby="nameHelp">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

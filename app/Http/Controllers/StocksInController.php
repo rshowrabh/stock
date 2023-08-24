@@ -16,7 +16,7 @@ class StocksInController extends Controller
     public function index()
     {
         
-        $datas = $this->table::orderBy('date', 'DESC')->paginate(10);
+        $datas = $this->table::orderBy('date', 'DESC')->with('category')->paginate(10);
         $rank = $datas->firstItem();
         return view('stocks.in.index')->with(['datas' => $datas , 'rank' => $rank]);
     }
@@ -43,7 +43,7 @@ class StocksInController extends Controller
             'name' => 'required',
             'int_no' => 'required',
             'category_id' => 'required',
-            'date' => 'required',
+            'date' => 'required|date',
             'quantity' => 'required',
             'price' => 'required',
         ]);

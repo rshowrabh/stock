@@ -12,4 +12,8 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    function stocksin(){
+        return $this->hasOne('App\StocksIn');
+    }
 }

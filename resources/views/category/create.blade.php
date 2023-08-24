@@ -17,7 +17,7 @@
       </div>
       @enderror
         <label class="form-label">Category Name</label>
-        <input value="{{ old('name') }}" name="name" type="name" class="form-control"  aria-describedby="nameHelp">
+        <input required value="{{ old('name') }}" name="name" type="name" class="form-control"  aria-describedby="nameHelp">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
