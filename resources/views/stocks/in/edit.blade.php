@@ -31,6 +31,8 @@
         <input required name="quantity" value="{{$data->quantity}}" type="number" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Price</label>
         <input required name="price" value="{{$data->price}}" type="number" class="form-control"  aria-describedby="nameHelp">
+        <label class="form-label">Comment</label>
+        <input  name="comment" value="{{$data->comment}}" type="text" class="form-control"  aria-describedby="nameHelp">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

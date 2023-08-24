@@ -26,6 +26,7 @@ class StocksInFactory extends Factory
             'date' => fake()->date(),
             'quantity' => random_int(1,100),
             'price' => random_int(1,1000),
+            'comment' => fake()->word(),
         ];
     }
 }

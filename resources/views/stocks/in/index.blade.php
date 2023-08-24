@@ -66,6 +66,7 @@
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
                 <th scope="col">Total Price</th>
+                <th scope="col">Commnet</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>
@@ -81,6 +82,7 @@
                 <td>{{$data->quantity}}</td>
                 <td>{{$data->price}}</td>
                 <td>{{$data->price * $data->quantity}}</td>
+                <td>{{$data->comment}}</td>
                 <td><a href="{{route('stocks-in.edit', $data->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
                 <td>
                   <form method="post" action="{{ route('stocks-in.destroy', $data->id) }}">

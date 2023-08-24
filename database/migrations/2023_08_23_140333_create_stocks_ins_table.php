@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('date');
             $table->integer('quantity');
             $table->integer('price');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

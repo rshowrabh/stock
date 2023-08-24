@@ -28,6 +28,8 @@
         <input required value="{{ old('quantity') }}" name="quantity" type="number" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Price</label>
         <input required value="{{ old('price') }}" name="price"  type="number" class="form-control"  aria-describedby="nameHelp">
+        <label class="form-label">Comment</label>
+        <input  value="{{ old('comment') }}" name="comment"  type="text" class="form-control"  aria-describedby="nameHelp">
 
         
       </div>

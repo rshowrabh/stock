@@ -92,10 +92,9 @@ class StocksInController extends Controller
             'date' => 'required',
             'quantity' => 'required',
             'price' => 'required',
-        ]);
-        
+        ]);        
         $data=\Auth::user()->stocksIn->findOrFail($id);
-        $data->fill(['user_id' => \Auth::id()] + $request->all())->save();
+        $data->fill(['user_id' => \Auth::user()->id] + $request->all())->save();
         return redirect()->route('stocks-in.index')->with('message', 'Stocks Updated');
     }
 

@@ -19,6 +19,7 @@ class StocksIn extends Model
         'price',
         'image_id',
         'category_id',
+        'comment',
     ];
 
     public function category(): BelongsTo
