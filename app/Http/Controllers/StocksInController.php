@@ -129,4 +129,5 @@ class StocksInController extends Controller
         $items = \App\Models\StocksIn::all();
         return view('stocks.in.index',compact('datas', 'rank', 'items'));
     }
+    
 }

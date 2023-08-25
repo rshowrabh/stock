@@ -52,16 +52,11 @@
             <tbody>
                 @foreach($datas as $data)
               <tr>
-                @php
-                    $in = $data->quantity;
-                    $out = $data->stocksOut->quantity ?? '0';
-                    $left = $in - $out;
-                @endphp
                 <th scope="row">{{$rank++}}</th>
                 <td>{{$data->name}}</td>
-                <td>{{$in}}</td>
-                <td>{{$out}}</td>
-                <td>{{$left}}</td>
+                <td>{{$data->quantity}}</td>
+                <td>{{$data->stocksOut->quantity ?? '0'}}</td>
+                <td class="text-danger">{{$data->stocks_left}}</td>
                               
               </tr>
               @endforeach

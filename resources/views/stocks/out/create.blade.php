@@ -20,7 +20,7 @@
         <select required name="item_id"  class="form-control">
           <option value="">Select Item</option>
           @foreach ($items as $item)
-         <option value="{{$item->id}}">{{$item->name}}</option>
+         <option value="{{$item->id}}">{{$item->name}} <span class="text-danger">(Item Left: {{$item->stocks_left}})</span> </option>
          @endforeach         
        </select>
         

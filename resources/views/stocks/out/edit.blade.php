@@ -20,7 +20,7 @@
         <label for="exampleInputEmail1" class="form-label">Item Name</label>
         <select required name="item_id"  class="form-control">
           @foreach ($items as $item)
-         <option {{($data->member_id == $item->id) ? 'selected': ''}} value="{{$item->id}}">{{$item->name}}</option>
+         <option {{($data->item_id == $item->id) ? 'selected': ''}} value="{{$item->id}}">{{$item->name}} (Item Left: {{$item->stocks_left}})</option>
          @endforeach         
        </select>
         <label for="exampleInputEmail1" class="form-label">Int No</label>
