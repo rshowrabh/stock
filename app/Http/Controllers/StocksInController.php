@@ -18,7 +18,8 @@ class StocksInController extends Controller
         
         $datas = $this->table::orderBy('date', 'DESC')->with('category')->paginate(10);
         $rank = $datas->firstItem();
-        return view('stocks.in.index')->with(['datas' => $datas , 'rank' => $rank]);
+        $items = \App\Models\StocksIn::all();
+        return view('stocks.in.index',compact('datas', 'rank', 'items'));
     }
 
     /**
@@ -113,9 +114,10 @@ class StocksInController extends Controller
     }
 
     public function search_name(Request $request){
-        $datas = $this->table::where('name', 'LIKE', "%{$request->search_name}%")->orderBy('date', 'DESC')->with('category')->paginate(10);
+        $datas = $this->table::where('id', 'LIKE', $request->item_id)->orderBy('date', 'DESC')->with('category')->paginate(10);
         $rank = $datas->firstItem();
-        return view('stocks.in.index')->with(['datas' => $datas , 'rank' => $rank]);
+        $items = \App\Models\StocksIn::all();
+        return view('stocks.in.index',compact('datas', 'rank', 'items'));
     }
 
     public function search_date(Request $request){
@@ -124,6 +126,7 @@ class StocksInController extends Controller
         $to = date($request->search_date_to);
         $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('category')->paginate(10);
         $rank = $datas->firstItem();
-        return view('stocks.in.index')->with(['datas' => $datas , 'rank' => $rank]);
+        $items = \App\Models\StocksIn::all();
+        return view('stocks.in.index',compact('datas', 'rank', 'items'));
     }
 }

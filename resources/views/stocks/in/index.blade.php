@@ -29,11 +29,18 @@
         <form action="{{route('search.name')}}" method="post">
           @csrf
           <div class="row">
-            <div class="col-8"><input required class="form-control" type="text" name="search_name"></div>
-            <div class="col-4"> <input class=" form-control btn btn-primary" type="submit" value="Search by Name"></div>
+            <div class="col-8">
+              <select required name="item_id" class="js-example-basic-single form-control">
+              <option value="" >Select Item</option>
+              @foreach ($items as $item)
+                  <option value="{{$item->id}}">{{$item->name}}</option>
+              @endforeach
+             </select>
+            </div>
+            <div class="col-4">
+               <input type="submit" value="Search by Item" class="btn btn-primary">
+            </div>
           </div>
-          
-         
           </form>
       </div>
       <div class="col-6">
@@ -105,6 +112,8 @@
     {{ $datas->links("pagination::bootstrap-5") }}
 
 </div>
-
-
 @endsection
+
+@push('scripts')
+  @include('inc.select2') 
+@endpush

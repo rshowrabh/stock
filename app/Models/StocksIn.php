@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class StocksIn extends Model
 {
@@ -25,5 +26,9 @@ class StocksIn extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+    public function stocksOut(): HasOne
+    {
+        return $this->hasOne(StocksOut::class, 'item_id');
     }
 }

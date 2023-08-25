@@ -29,3 +29,5 @@ Route::post('/search-out-name', [App\Http\Controllers\StocksOutController::class
 Route::post('/search-out-date', [App\Http\Controllers\StocksOutController::class, 'search_date'])->middleware('auth')->name('search.out.date');
 Route::get('/category-list', [App\Http\Controllers\CategoriesController::class, 'list'])->middleware('auth')->name('category.list');
 Route::resource('/member', App\Http\Controllers\MemberController::class)->middleware('auth');
+Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->middleware('auth')->name('stocks');
+Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'search'])->middleware('auth')->name('stocks.search');

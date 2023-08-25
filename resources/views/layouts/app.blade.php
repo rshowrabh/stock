@@ -46,10 +46,15 @@
                 <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('member.index')}}">Member</a>
                         <a class="collapse-item" href="{{route('category.index')}}">Category</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('stocks-in.index')}}">Stock In</a>
                         <a class="collapse-item" href="{{route('stocks-out.index')}}">Stock Out</a>
-                        <a class="collapse-item" href="{{route('member.index')}}">Member</a>
+                    </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('stocks')}}">Stocks</a>
                     </div>
                 </div>
             </li>
