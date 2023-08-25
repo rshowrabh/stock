@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
-class StocksInController extends Controller
+class StocksOutController extends Controller
 {
-    protected $table = \App\Models\StocksIn::class;
+    
+    protected $table = \App\Models\StocksOut::class;
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +16,10 @@ class StocksInController extends Controller
     public function index()
     {
         
-        $datas = $this->table::orderBy('date', 'DESC')->with('category')->paginate(10);
+        $datas = $this->table::orderBy('date', 'DESC')->with('member')->with('items')->paginate(10);
         $rank = $datas->firstItem();
-        return view('stocks.in.index')->with(['datas' => $datas , 'rank' => $rank]);
+        $items = \App\Models\StocksIn::all();
+        return view('stocks.out.index',compact('datas', 'rank', 'items'));
     }
 
     /**
@@ -28,11 +29,14 @@ class StocksInController extends Controller
      */
     public function create()
     {
-       return view('stocks.in.create');
+       $members = \App\Models\Member::all();
+       $items = \App\Models\StocksIn::all();
+       return view('stocks.out.create',compact('members','items'));
+
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource out storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -40,15 +44,14 @@ class StocksInController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'item_id' => 'required',
             'int_no' => 'required',
-            'category_id' => 'required',
+            'member_id' => 'required',
             'date' => 'required|date',
             'quantity' => 'required',
-            'price' => 'required',
         ]);
-        $datas = \Auth::user()->stocksIn()->create($request->all());;
-        return redirect()->route('stocks-in.index')->with('message', 'Stocks Added');
+        $datas = \Auth::user()->stocksOut()->create($request->all());;
+        return redirect()->route('stocks-out.index')->with('message', 'Stocks Added');
     }
 
     /**
@@ -72,12 +75,13 @@ class StocksInController extends Controller
     public function edit($id)
     {
         $data = $this->table::find($id);
-        $categories = \App\Models\Category::all();
-        return view('stocks.in.edit',compact('data', 'categories'));
+        $members = \App\Models\Member::all();
+        $items = \App\Models\StocksIn::all();
+        return view('stocks.out.edit',compact('data', 'members','items'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource out storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -87,16 +91,15 @@ class StocksInController extends Controller
     {
        
         $validated = $request->validate([
-            'name' => 'required',
+            'item_id' => 'required',
             'int_no' => 'required',
-            'category_id' => 'required',
-            'date' => 'required',
+            'member_id' => 'required',
+            'date' => 'required|date',
             'quantity' => 'required',
-            'price' => 'required',
         ]);        
-        $data=\Auth::user()->stocksIn->findOrFail($id);
+        $data=\Auth::user()->stocksOut->findOrFail($id);
         $data->fill(['user_id' => \Auth::user()->id] + $request->all())->save();
-        return redirect()->route('stocks-in.index')->with('message', 'Stocks Updated');
+        return redirect()->route('stocks-out.index')->with('message', 'Stocks Updated');
     }
 
     /**
@@ -109,21 +112,23 @@ class StocksInController extends Controller
     {
         $post = $this->table::find($id);
         $post->delete();
-        return redirect()->route('stocks-in.index')->with('message', 'Stocks Deleted');
+        return redirect()->route('stocks-out.index')->with('message', 'Stocks Deleted');
     }
 
     public function search_name(Request $request){
-        $datas = $this->table::where('name', 'LIKE', "%{$request->search_name}%")->orderBy('date', 'DESC')->with('category')->paginate(10);
+        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('date', 'DESC')->with('member')->paginate(10);
         $rank = $datas->firstItem();
-        return view('stocks.in.index')->with(['datas' => $datas , 'rank' => $rank]);
+        $items = \App\Models\StocksIn::all();
+        return view('stocks.out.index',compact('datas', 'rank', 'items'));
     }
 
     public function search_date(Request $request){
 
         $from = date($request->search_date_from);
         $to = date($request->search_date_to);
-        $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('category')->paginate(10);
+        $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('member')->paginate(10);
         $rank = $datas->firstItem();
-        return view('stocks.in.index')->with(['datas' => $datas , 'rank' => $rank]);
+        $items = \App\Models\StocksIn::all();
+        return view('stocks.out.index',compact('datas', 'rank', 'items'));
     }
 }

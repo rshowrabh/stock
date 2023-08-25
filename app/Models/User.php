@@ -52,4 +52,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(StocksIn::class);
     }
+    public function stocksOut(): HasOne
+    {
+        return $this->hasOne(StocksOut::class);
+    }
+    public function member(): HasOne
+    {
+        return $this->hasOne(Member::class);
+    }
 }

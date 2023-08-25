@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <h3>Stocks</h3>
+    <h3>Stocks In</h3>
 @endsection
 
 @section('content')
@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-2">
         <a href="{{route('stocks-in.create')}}"><button type="button" class="d-flex justify-content-left btn btn-primary">
-          Add New
+          Add New Stock
         </button></a>
       </div>
       <div class="col-4">
@@ -30,7 +30,7 @@
           @csrf
           <div class="row">
             <div class="col-8"><input required class="form-control" type="text" name="search_name"></div>
-            <div class="col-4"> <input class=" form-control btn btn-primary" type="submit" value="Search Name"></div>
+            <div class="col-4"> <input class=" form-control btn btn-primary" type="submit" value="Search by Name"></div>
           </div>
           
          
@@ -47,7 +47,7 @@
             <input required value="{{ old('search_date_to') }}" name="search_date_to" type="date" class="form-control" placeholder="Last name" aria-label="Last name">
           </div>
           <div class="col">
-            <input type="Submit" class="form-control btn btn-primary" value="Search Date" aria-label="Last name">
+            <input type="Submit" class="form-control btn btn-primary" value="Search by Date" aria-label="Last name">
           </div>
         </div>
       </form>
@@ -55,7 +55,7 @@
     </div>
   </div>
         <div class="d-flex justify-content-center">
-        <table class="table w-50 table-bordered">
+        <table class="table w-auto table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -77,7 +77,7 @@
                 <th scope="row">{{$rank++}}</th>
                 <td>{{$data->name}}</td>
                 <td>{{$data->int_no}}</td>
-                <td class="cat{{$data->category_id}}">{{$data->category->name}}</td>
+                <td>{{$data->category->name}}</td>
                 <td>{{$data->date}}</td>
                 <td>{{$data->quantity}}</td>
                 <td>{{$data->price}}</td>

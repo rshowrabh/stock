@@ -48,6 +48,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('category.index')}}">Category</a>
                         <a class="collapse-item" href="{{route('stocks-in.index')}}">Stock In</a>
+                        <a class="collapse-item" href="{{route('stocks-out.index')}}">Stock Out</a>
+                        <a class="collapse-item" href="{{route('member.index')}}">Member</a>
                     </div>
                 </div>
             </li>
