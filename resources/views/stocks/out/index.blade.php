@@ -87,7 +87,13 @@
                 <td>{{$data->date}}</td>
                 <td>{{$data->quantity}}</td>
                 <td>{{$data->comment}}</td>
-                <td><a class="venobox" data-gall="gallery01" href="storage/images/stocksin/12.jpg">View</a></td>
+                <td>
+                  @if($data->image)
+                  <a class="venobox" data-gall="gallery01" href="storage/images/{{$data->image->type}}/{{$data->image->name}}">
+                  <img class="img-fluid" width="50" height="50" src="storage/images/{{$data->image->type}}/{{$data->image->name}}" alt="No image">
+                </a>
+                @endif
+              </td>
                 <td><a href="{{route('stocks-out.edit', $data->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
                 <td>
                   <form method="post" action="{{ route('stocks-out.destroy', $data->id) }}">

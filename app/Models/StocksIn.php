@@ -26,6 +26,10 @@ class StocksIn extends Model
     {
         return $this->belongsTo(Item::class);
     }
+    public function image(): BelongsTo
+    {
+        return $this->belongsTo(Image::class,'int_no', 'int_no');
+    }
     public function stocksOut(): HasMany
     {
         return $this->hasMany(StocksOut::class, 'item_id');

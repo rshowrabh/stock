@@ -26,6 +26,10 @@ class StocksOut extends Model
     {
         return $this->belongsTo(Member::class);
     }
+    public function image(): BelongsTo
+    {
+        return $this->belongsTo(Image::class,'int_no', 'int_no');
+    }
     public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);
