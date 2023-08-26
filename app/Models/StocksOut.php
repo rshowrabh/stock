@@ -26,8 +26,9 @@ class StocksOut extends Model
     {
         return $this->belongsTo(Member::class);
     }
-    public function items(): BelongsTo
+    public function item(): BelongsTo
     {
-        return $this->belongsTo(StocksIn::class ,'item_id');
+        return $this->belongsTo(Item::class);
     }
+    
 }

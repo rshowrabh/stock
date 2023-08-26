@@ -18,10 +18,9 @@ class StocksInFactory extends Factory
     public function definition()
     {
         return [
-            'name' =>fake()->name(),
             'user_id' => '1',
             'int_no' =>random_int(1,100000),
-            'category_id' => random_int(1,20),
+            'item_id' => random_int(1,20),
             'image_id' => '1',
             'date' => fake()->date(),
             'quantity' => random_int(1,100),

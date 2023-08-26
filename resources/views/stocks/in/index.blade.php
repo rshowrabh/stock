@@ -30,7 +30,7 @@
           @csrf
           <div class="row">
             <div class="col-8">
-              <select required name="item_id" class="js-example-basic-single form-control">
+              <select required name="item_id" class="select2 form-control">
               <option value="" >Select Item</option>
               @foreach ($items as $item)
                   <option value="{{$item->id}}">{{$item->name}}</option>
@@ -68,7 +68,6 @@
                 <th scope="col">#</th>
                 <th scope="col">Item Name</th>
                 <th scope="col">Int No</th>
-                <th scope="col">Category</th>
                 <th scope="col">Date</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
@@ -82,9 +81,8 @@
                 @foreach($datas as $data)
               <tr>
                 <th scope="row">{{$rank++}}</th>
-                <td>{{$data->name}}</td>
+                <td>{{$data->item->name ?? ''}}</td>
                 <td>{{$data->int_no}}</td>
-                <td>{{$data->category->name}}</td>
                 <td>{{$data->date}}</td>
                 <td>{{$data->quantity}}</td>
                 <td>{{$data->price}}</td>
@@ -98,7 +96,7 @@
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                 
-                    <button onclick="return confirm('Delete {{$data->name}} ?')" class="btn btn-danger" type="submit">Delete</button>
+                    <button onclick="return confirm('Delete {{$data->item->name ?? ''}}')" class="btn btn-danger" type="submit">Delete</button>
                 </form>  
                 </td>
                 

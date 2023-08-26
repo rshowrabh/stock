@@ -18,15 +18,13 @@
 @enderror
         <input name="_method" type="hidden" value="PATCH">
         <label class="form-label">Item Name</label>
-        <input required name="name" value="{{$data->name}}" type="text" class="form-control"  aria-describedby="nameHelp">
-        <label class="form-label">Intendent No</label>
-        <input required name="int_no" value="{{$data->int_no}}" type="number" class="form-control"  aria-describedby="nameHelp">
-        <label class="form-label">Category</label>
-        <select required name="category_id" id="sel_emp" class="form-select" aria-label="Default select example">
-          @foreach ($categories as $category)
-              <option {{($data->category_id == $category->id) ? 'selected': ''}}  value="{{$category->id}}">{{$category->name}}</option>
+        <select required name="item_id"  class="select2 form-control form-select" aria-label="Default select example">
+          @foreach ($items as $item)
+              <option {{($data->item_id == $item->id) ? 'selected': ''}}  value="{{$item->id}}">{{$item->name}}</option>
           @endforeach
         </select>
+        <label class="form-label">Intendent No</label>
+        <input required name="int_no" value="{{$data->int_no}}" type="number" class="form-control"  aria-describedby="nameHelp">       
         <label class="form-label">Date</label>
         <input required name="date" value="{{$data->date}}" type="date" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Qunatity</label>
@@ -41,5 +39,5 @@
   </main>
 
 </div>
+@include('inc.select2')
 @endsection
-</div>

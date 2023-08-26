@@ -30,7 +30,7 @@
           @csrf
           <div class="row">
             <div class="col-8">
-              <select required name="item_id" class="js-example-basic-single form-control">
+              <select required name="item_id" class="select2 form-control">
               <option value="" >Select Item</option>
               @foreach ($items as $item)
                   <option value="{{$item->id}}">{{$item->name}}</option>
@@ -72,6 +72,7 @@
                 <th scope="col">Date</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Commnet</th>
+                <th scope="col">Image</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>
@@ -81,11 +82,12 @@
               <tr>
                 <th scope="row">{{$rank++}}</th>
                 <td>{{$data->int_no}}</td>
-                <td>{{$data->items->name ?? ''}}</td>
+                <td>{{$data->item->name ?? ''}}</td>
                 <td>{{$data->member->name ?? ''}}</td>
                 <td>{{$data->date}}</td>
                 <td>{{$data->quantity}}</td>
                 <td>{{$data->comment}}</td>
+                <td><a class="venobox" data-gall="gallery01" href="storage/images/stocksin/12.jpg">View</a></td>
                 <td><a href="{{route('stocks-out.edit', $data->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
                 <td>
                   <form method="post" action="{{ route('stocks-out.destroy', $data->id) }}">
@@ -108,6 +110,7 @@
     {{ $datas->links("pagination::bootstrap-5") }}
 
 </div>
+@include('inc.venobox')
 @endsection
 
 @push('scripts')

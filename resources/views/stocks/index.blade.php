@@ -24,8 +24,8 @@
             @csrf
             <div class="row">
               <div class="col-8">
-                <select required name="item_id" class="js-example-basic-single form-control">
-                <option value="" >Select Item</option>
+                <select required name="item_id" class="select2 form-control">
+                <option value="" >Select Item </option>
                 @foreach ($items as $item)
                     <option value="{{$item->id}}">{{$item->name}}</option>
                 @endforeach
@@ -50,14 +50,13 @@
               </tr>
             </thead>
             <tbody>
-                @foreach($datas as $data)
+                @foreach($datas as $i => $item)
               <tr>
                 <th scope="row">{{$rank++}}</th>
-                <td>{{$data->name}}</td>
-                <td>{{$data->quantity}}</td>
-                <td>{{$data->stocksOut->quantity ?? '0'}}</td>
-                <td class="text-danger">{{$data->stocks_left}}</td>
-                              
+                <th >{{$item->name}}</th>                           
+               <th>{{$item->stocks_in_total}}</th>                        
+               <th>{{$item->stocks_out_total}}</th>                    
+               <th>{{$item->stocks_left}}</th>                    
               </tr>
               @endforeach
              

@@ -13,16 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stocks_ins', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->integer('item_id')->unsigned();
-            $table->integer('int_no');
-            $table->integer('image_id')->unsigned()->nullable();
-            $table->date('date');
-            $table->integer('quantity');
-            $table->integer('price');
-            $table->text('comment')->nullable();
+            $table->integer('category_id')->unsigned();
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stocks_ins');
+        Schema::dropIfExists('items');
     }
 };

@@ -5,35 +5,37 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StocksIn extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'item_id',
         'user_id',
         'int_no',
         'date',
         'quantity',
         'price',
         'image_id',
-        'category_id',
         'comment',
     ];
 
-    public function category(): BelongsTo
+    public function item(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Item::class);
     }
-    public function stocksOut(): HasOne
+    public function stocksOut(): HasMany
     {
-        return $this->hasOne(StocksOut::class, 'item_id');
+        return $this->hasMany(StocksOut::class, 'item_id');
     }
     public function getStocksLeftAttribute() // notice that the attribute name is in CamelCase.
     {
     return $this->quantity - ($this->stocksOut->quantity ?? '0');
+    }
+    public function getStocksInTotalAttribute() // notice that the attribute name is in CamelCase.
+    {
+    return havingRaw('sum(quantity) > ?');
     }
 }

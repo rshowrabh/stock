@@ -39,7 +39,8 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:categories|min:5',
+            'name' => 'required',
+            'title' => 'required',
         ]);
         $datas = \Auth::user()->member()->create($request->all());;
         return redirect()->route('member.index')->with('message', 'Member Added');
@@ -79,7 +80,8 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:categories|min:5',
+            'name' => 'required',
+            'title' => 'required',
         ]);
         $data=$this->table::findOrFail($id);
         $data->update([

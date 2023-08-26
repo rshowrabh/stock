@@ -3,8 +3,7 @@
        
 <script>
   $(document).ready(function() {
-      // Select2 Multiple
-      $('.js-example-basic-single').select2({
+      $('.select2').select2({
           placeholder: "Select Here",
           allowClear: true
       });

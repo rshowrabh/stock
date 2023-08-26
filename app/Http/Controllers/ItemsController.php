@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
 
-class CategoriesController extends Controller
+class ItemsController extends Controller
 {
+    
 
-    protected $table = \App\Models\Category::class;
+    protected $table = \App\Models\Item::class;
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +18,8 @@ class CategoriesController extends Controller
     {      
         $datas = $this->table::paginate(10);
         $rank = $datas->firstItem();
-        return view('category.index')->with(['datas' => $datas, 'rank' => $rank]);
+        $category = \App\Models\Category::all();
+        return view('items.index',compact('datas', 'rank', 'category'));
     }
 
     /**
@@ -28,7 +29,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-       return view('category.create');
+        $category = \App\Models\Category::all();
+        return view('items.create',compact('category'));
     }
 
     /**
@@ -40,10 +42,11 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:categories|min:5',
+            'category_id' => 'required',
+            'name' => 'required|unique:items|min:3',
         ]);
-        $datas = \Auth::user()->category()->create($request->all());;
-        return redirect()->route('category.index')->with('message', 'Category Added');
+        $datas = \Auth::user()->items()->create($request->all());;
+        return redirect()->route('items.index')->with('message', 'Item Added');
     }
 
     /**
@@ -66,8 +69,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
+        $category = \App\Models\Category::all();
         $data = $this->table::find($id);
-        return view('category.edit')->with(['data' => $data]);
+        return view('items.edit',compact('data', 'category'));
     }
 
     /**
@@ -80,14 +84,16 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|min:3',
+            'category_id' => 'required',
+            'name' => 'required',
         ]);
         $data=$this->table::findOrFail($id);
         $data->update([
         'name'=>$request->name,
+        'category_id' =>  $request->category_id,
         'user_id' =>  \Auth::id(),
     ]);
-        return redirect()->route('category.index')->with('message', 'Category Updated');
+        return redirect()->route('items.index')->with('message', 'Item Updated');
     }
 
     /**
@@ -100,7 +106,7 @@ class CategoriesController extends Controller
     {
         $post = $this->table::find($id);
         $post->delete();
-        return redirect()->route('category.index')->with('message', 'Category Deleted');
+        return redirect()->route('items.index')->with('message', 'Item Deleted');
     }
 
     public function list(){

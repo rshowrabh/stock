@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/category', App\Http\Controllers\CategoriesController::class)->middleware('auth');
+Route::resource('/items', App\Http\Controllers\ItemsController::class)->middleware('auth');
 Route::resource('/stocks-in', App\Http\Controllers\StocksInController::class)->middleware('auth');
 Route::resource('/stocks-out', App\Http\Controllers\StocksOutController::class)->middleware('auth');
 Route::post('/search-name', [App\Http\Controllers\StocksInController::class, 'search_name'])->middleware('auth')->name('search.name');

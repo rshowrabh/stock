@@ -17,7 +17,7 @@
       </div>
       @enderror
         <label for="exampleInputEmail1" class="form-label">Item Name</label>
-        <select required name="item_id"  class="form-control">
+        <select required name="item_id"  class="select2 form-control">
           <option value="">Select Item</option>
           @foreach ($items as $item)
          <option value="{{$item->id}}">{{$item->name}} <span class="text-danger">(Item Left: {{$item->stocks_left}})</span> </option>
@@ -28,7 +28,7 @@
         <input required name="int_no" type="number" class="form-control" id="exampleInputname1" aria-describedby="nameHelp">
 
         <label for="exampleInputEmail1" class="form-label">Member Name</label>
-        <select required name="member_id"  class="form-control">
+        <select required name="member_id"  class="select2 form-control">
           <option value="">Select Member</option>
           @foreach ($members as $item)
           <option value="{{$item->id}}">{{$item->name}}</option>
@@ -47,6 +47,6 @@
   </main>
 
 </div>
+@include('inc.select2')
 @endsection
-</div>
 

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -44,20 +44,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function category(): HasOne
+    public function category(): HasMany
     {
-        return $this->hasOne(Category::class);
+        return $this->hasMany(Category::class);
     }
-    public function stocksIn(): HasOne
+    public function items(): HasMany
     {
-        return $this->hasOne(StocksIn::class);
+        return $this->hasMany(Item::class);
     }
-    public function stocksOut(): HasOne
+    public function stocksIn(): HasMany
     {
-        return $this->hasOne(StocksOut::class);
+        return $this->hasMany(StocksIn::class);
     }
-    public function member(): HasOne
+    public function stocksOut(): HasMany
     {
-        return $this->hasOne(Member::class);
+        return $this->hasMany(StocksOut::class);
+    }
+    public function member(): HasMany
+    {
+        return $this->hasMany(Member::class);
     }
 }

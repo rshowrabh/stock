@@ -16,9 +16,9 @@ class StocksOutController extends Controller
     public function index()
     {
         
-        $datas = $this->table::orderBy('date', 'DESC')->with('member')->with('items')->paginate(10);
+        $datas = $this->table::orderBy('date', 'DESC')->with('member')->with('item')->paginate(10);
         $rank = $datas->firstItem();
-        $items = \App\Models\StocksIn::all();
+        $items = \App\Models\Item::all();
         return view('stocks.out.index',compact('datas', 'rank', 'items'));
     }
 
@@ -30,7 +30,7 @@ class StocksOutController extends Controller
     public function create()
     {
        $members = \App\Models\Member::all();
-       $items = \App\Models\StocksIn::all();
+       $items = \App\Models\Item::all();
        return view('stocks.out.create',compact('members','items'));
 
     }
@@ -74,9 +74,9 @@ class StocksOutController extends Controller
      */
     public function edit($id)
     {
-        $data = $this->table::find($id);
+        $data = $this->table::findOrFail($id);
         $members = \App\Models\Member::all();
-        $items = \App\Models\StocksIn::all();
+        $items = \App\Models\Item::all();
         return view('stocks.out.edit',compact('data', 'members','items'));
     }
 
@@ -97,7 +97,7 @@ class StocksOutController extends Controller
             'date' => 'required|date',
             'quantity' => 'required',
         ]);        
-        $data=\Auth::user()->stocksOut->findOrFail($id);
+        $data=$this->table::findOrFail($id);
         $data->fill(['user_id' => \Auth::user()->id] + $request->all())->save();
         return redirect()->route('stocks-out.index')->with('message', 'Stocks Updated');
     }
@@ -118,7 +118,7 @@ class StocksOutController extends Controller
     public function search_name(Request $request){
         $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('date', 'DESC')->with('member')->paginate(10);
         $rank = $datas->firstItem();
-        $items = \App\Models\StocksIn::all();
+        $items = \App\Models\Item::all();
         return view('stocks.out.index',compact('datas', 'rank', 'items'));
     }
 
