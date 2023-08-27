@@ -62,7 +62,7 @@
     </div>
   </div>
         <div class="d-flex justify-content-center">
-        <table class="table w-auto table-bordered">
+        <table class="my-2 table w-auto table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -73,6 +73,7 @@
                 <th scope="col">Price</th>
                 <th scope="col">Total Price</th>
                 <th scope="col">Commnet</th>
+                <th scope="col">Image</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>
@@ -88,6 +89,13 @@
                 <td>{{$data->price}}</td>
                 <td>{{$data->price * $data->quantity}}</td>
                 <td>{{$data->comment}}</td>
+                <td>
+                  @if($data->image)
+                  <a class="venobox" data-gall="in" href="storage/images/in/{{$data->image->name}}">
+                  <img class="img-fluid" width="50" height="50" src="storage/images/in/{{$data->image->name}}" alt="No image">
+                  </a>
+                  @endif  
+                </td>
                 <td><a href="{{route('stocks-in.edit', $data->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
                 <td>
                   <form method="post" action="{{ route('stocks-in.destroy', $data->id) }}">
@@ -110,6 +118,7 @@
     {{ $datas->links("pagination::bootstrap-5") }}
 
 </div>
+@include('inc.venobox')
 @endsection
 
 @push('scripts')

@@ -14,4 +14,7 @@ class Image extends Model
         'int_no',
         'type',
     ];
+    function stocksIn(){
+        return $this->hasMany('App\StocksIn');
+    }
 }

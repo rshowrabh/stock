@@ -11,12 +11,15 @@
        <strong>{{ $message }}</strong>
       </div>
       @enderror
-        <label class="form-label">Int No</label>
-        <input required value="{{ old('int_no') }}" name="int_no" type="number" class="form-control"  aria-describedby="nameHelp">
         <label class="form-label">Type</label>
-        <select required class="form-control" name="type" id="">
+        <select required class="form-control" name="type" id="type">
+          <option value="">Select Type</option>
           <option value="in">Stock In</option>
           <option value="out">Stock Out</option>
+        </select>
+        <label class="form-label">Int No</label>
+        <select class="select2 form-control" required name="int_no" id="int_no">
+          <option value="">Select Int No</option>
         </select>
         <label class="col-sm-3 col-form-label">Upload Image</label>
         <div class="col-sm-9">
@@ -33,8 +36,10 @@
   </main>
 
 </div>
+
 <script>
-  selectImage.onchange = evt => {
+  $(document).ready(function () {
+    selectImage.onchange = evt => {
       preview = document.getElementById('preview');
       preview.style.display = 'block';
       const [file] = selectImage.files
@@ -42,6 +47,30 @@
           preview.src = URL.createObjectURL(file)
       }
   }
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+      $('#type').on('change', function () {
+          var type = this.value;
+          $.ajax({
+              url: "/get-int",
+              type: 'POST',
+              data: {
+                  type: type,
+              },
+              success:function(response){
+                        $.each(response, function (key, value) {
+                            $("#int_no").append('<option value="' + value
+                                .int_no + '">' + value.int_no + '</option>');
+                        });
+                    }
+                
+          });
+      });
+  });
 </script>
+@include('inc.select2')
 @endsection
 

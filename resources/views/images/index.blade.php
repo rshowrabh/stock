@@ -13,12 +13,36 @@
 @enderror
 <div class="text-center">
 <main class="py-2">
-    <!-- Button trigger modal -->
-<a href="{{route('images.create')}}"><button type="button" class="d-flex justify-content-left btn btn-primary">
-Add New
-</button></a>
+    <div class="row">
+      <div class="col">
+            <!-- Button trigger modal -->
+  <a href="{{route('images.create')}}"><button type="button" class="d-flex justify-content-left btn btn-primary">
+    Add New
+    </button></a>
+      </div>
+      <div class="col">
+        <div class="col">
+          <form action="{{route('image.search')}}" method="post">
+            @csrf
+            <div class="row">
+              <div class="col-8">
+                <select required name="int_no" class="select2 form-control">
+                <option value="" >Select Here</option>
+                @foreach ($allImages as $image)
+                    <option value="{{$image->int_no}}">{{$image->int_no}}</option>
+                @endforeach
+               </select>
+              </div>
+              <div class="col-4">
+                 <input type="submit" value="Search by Int No" class="btn btn-primary">
+              </div>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div> 
     <div class="d-flex justify-content-center">
-    <table class="table w-50 table-bordered">
+    <table class="my-2 table w-50 table-bordered">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -35,7 +59,7 @@ Add New
             <th scope="row">{{$image->id}}</th>
             <td>{{$image->int_no}}</td>
             <td>{{$image->type}}</td>
-            <td><a class="venobox" href="/images/{{$image->type}}/{{$image->name}}">
+            <td><a data-gall="image" class="venobox" href="storage/images/{{$image->type}}/{{$image->name}}">
               <img width="50" height="50" class="thumbnail img-fluid" src="storage/images/{{$image->type}}/{{$image->name}}" alt="No Image">
             </a>
           </td>
@@ -55,7 +79,6 @@ Add New
     </div>
 </main>
 {{ $images->links("pagination::bootstrap-5") }}
-
 </div>
 
 @include('inc.venobox')

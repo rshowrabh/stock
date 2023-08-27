@@ -2,7 +2,13 @@
 @extends('layouts.app')
 
 @section('title')
-    <h3>Stocks Out</h3>
+  <div class="row">
+    <div class="col"><h3>Stock Out</h3></div>
+    <div class="col">
+        <a style="white-space: nowrap" class="btn btn-primary" href="{{route('stocks-out.create')}}">
+          New Stock Out</a>
+      </div>
+    </div>
 @endsection
 
 @section('content')
@@ -20,16 +26,29 @@
     <main class="py-2">
   <div class="container">
     <div class="row">
-      <div class="col-2">
-        <a href="{{route('stocks-out.create')}}"><button type="button" class="d-flex justify-content-left btn btn-primary">
-          New Stock Out
-        </button></a>
+      <div class="col-3">
+        <form action="{{route('search.out.member')}}" method="post">
+          @csrf
+          <div class="row">
+            <div class="col">
+              <select required name="member_id" class="select2 form-control">
+              <option value="" >Select Item</option>
+              @foreach ($members as $member)
+                  <option value="{{$member->id}}">{{$member->name}}</option>
+              @endforeach
+             </select>
+            </div>
+            <div class="col">
+               <input type="submit" value="Search By Member" class="btn btn-primary">
+            </div>
+          </div>
+          </form>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <form action="{{route('search.out.name')}}" method="post">
           @csrf
           <div class="row">
-            <div class="col-8">
+            <div class="col">
               <select required name="item_id" class="select2 form-control">
               <option value="" >Select Item</option>
               @foreach ($items as $item)
@@ -37,13 +56,13 @@
               @endforeach
              </select>
             </div>
-            <div class="col-4">
-               <input type="submit" value="Search by Item" class="btn btn-primary">
+            <div class="col">
+               <input type="submit" value="Item Search" class="btn btn-primary">
             </div>
           </div>
           </form>
       </div>
-      <div class="col-6">
+      <div class="col-5">
         <form action="{{route('search.out.date')}}" method="post">
           @csrf
         <div class="row">
@@ -54,7 +73,7 @@
             <input required value="{{ old('search_date_to') }}" name="search_date_to" type="date" class="form-control" placeholder="Last name" aria-label="Last name">
           </div>
           <div class="col">
-            <input type="Submit" class="form-control btn btn-primary" value="Search by Date" aria-label="Last name">
+            <input type="Submit" class="form-control btn btn-primary" value="Date Search" aria-label="Last name">
           </div>
         </div>
       </form>
@@ -62,7 +81,7 @@
     </div>
   </div>
         <div class="d-flex justify-content-center">
-        <table class="table w-auto table-bordered">
+        <table class="my-2 table w-auto table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -89,7 +108,7 @@
                 <td>{{$data->comment}}</td>
                 <td>
                   @if($data->image)
-                  <a class="venobox" data-gall="gallery01" href="storage/images/{{$data->image->type}}/{{$data->image->name}}">
+                  <a class="venobox" data-gall="{{$data->image->type}}" href="storage/images/{{$data->image->type}}/{{$data->image->name}}">
                   <img class="img-fluid" width="50" height="50" src="storage/images/{{$data->image->type}}/{{$data->image->name}}" alt="No image">
                 </a>
                 @endif

@@ -14,12 +14,12 @@ class StocksOutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {     
         $datas = $this->table::orderBy('date', 'DESC')->with('member')->with('item')->paginate(10);
         $rank = $datas->firstItem();
         $items = \App\Models\Item::all();
-        return view('stocks.out.index',compact('datas', 'rank', 'items'));
+        $members = \App\Models\Member::all();
+        return view('stocks.out.index',compact('datas', 'rank', 'items', 'members'));
     }
 
     /**
@@ -119,7 +119,15 @@ class StocksOutController extends Controller
         $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('date', 'DESC')->with('member')->paginate(10);
         $rank = $datas->firstItem();
         $items = \App\Models\Item::all();
-        return view('stocks.out.index',compact('datas', 'rank', 'items'));
+        $members = \App\Models\Member::all();
+        return view('stocks.out.index',compact('datas', 'rank', 'items','members'));
+    }
+    public function search_member(Request $request){
+        $datas = $this->table::where('member_id', 'LIKE', $request->member_id)->orderBy('date', 'DESC')->with('member')->paginate(10);
+        $rank = $datas->firstItem();
+        $items = \App\Models\Item::all();
+        $members = \App\Models\Member::all();
+        return view('stocks.out.index',compact('datas', 'rank', 'items','members'));
     }
 
     public function search_date(Request $request){
@@ -129,6 +137,7 @@ class StocksOutController extends Controller
         $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('member')->paginate(10);
         $rank = $datas->firstItem();
         $items = \App\Models\StocksIn::all();
-        return view('stocks.out.index',compact('datas', 'rank', 'items'));
+        $members = \App\Models\Member::all();
+        return view('stocks.out.index',compact('datas', 'rank', 'items','members'));
     }
 }

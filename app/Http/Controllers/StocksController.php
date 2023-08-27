@@ -21,4 +21,14 @@ class StocksController extends Controller
         $items = Item::all();
         return view('stocks.index',compact('datas', 'rank', 'items'));
     }
+    public function getInt(Request $request){
+        if($request->type == 'in'){
+        $data = StocksIn::has('image', '=', 0)->select('int_no')->orderBy('date', 'desc')->get();
+        }
+        if($request->type == 'out'){
+            $data = StocksOut::has('image', '=', 0)->select('int_no')->orderBy('date', 'desc')->get();
+        }
+        return response()->json($data);
+        
+    }
 }
