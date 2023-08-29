@@ -91,7 +91,7 @@
                 <td>{{$data->comment}}</td>
                 <td>
                   @if($data->image)
-                  <a class="venobox" data-gall="in" href="storage/images/in/{{$data->image->name}}">
+                  <a class="venobox" data-gall="in" href="/storage/images/in/{{$data->image->name}}">
                   <img class="img-fluid" width="50" height="50" src="storage/images/in/{{$data->image->name}}" alt="No image">
                   </a>
                   @endif  

@@ -60,7 +60,7 @@
             <td>{{$image->int_no}}</td>
             <td>{{$image->type}}</td>
             <td><a data-gall="image" class="venobox" href="storage/images/{{$image->type}}/{{$image->name}}">
-              <img width="50" height="50" class="thumbnail img-fluid" src="storage/images/{{$image->type}}/{{$image->name}}" alt="No Image">
+              <img width="50" height="50" class="thumbnail" src="/storage/images/{{$image->type}}/{{$image->name}}" alt="No Image">
             </a>
           </td>
             <td><a href="{{route('images.edit', $image->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
@@ -68,7 +68,7 @@
                 <form method="post" action="{{ route('images.destroy', $image->id) }}">               
                   @csrf
                   {{ method_field('DELETE') }}                
-                  <button onclick="return confirm('Delete {{$image->name}} ?')" class="btn btn-danger" type="submit">Delete</button>
+                  <button onclick="return confirm('Delete {{$image->int_no}} ?')" class="btn btn-danger" type="submit">Delete</button>
               </form>  
               </td>               
           </tr>

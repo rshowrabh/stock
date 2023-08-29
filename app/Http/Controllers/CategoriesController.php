@@ -16,7 +16,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {      
-        $datas = $this->table::paginate(10);
+        $datas = $this->table::latest()->paginate(10);
         $rank = $datas->firstItem();
         return view('category.index')->with(['datas' => $datas, 'rank' => $rank]);
     }

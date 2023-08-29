@@ -27,9 +27,9 @@
         <strong>{{ $message }}</strong>
          </span>
          @enderror
-        <img id="preview" src="/storage/images/{{$image->type}}/{{$image->name}}" alt="your name" class="mt-3""/> 
+        <img id="preview" src="/storage/images/{{$image->type}}/{{$image->name}}" alt="your name" class="mt-3 img-fluid"/> 
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary my-2">Submit</button>
     </form>
   </main>
 

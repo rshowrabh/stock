@@ -30,7 +30,7 @@ class StocksOutController extends Controller
     public function create()
     {
        $members = \App\Models\Member::all();
-       $items = \App\Models\Item::all();
+       $items = \App\Models\Item::latest()->get();
        return view('stocks.out.create',compact('members','items'));
 
     }
@@ -76,7 +76,7 @@ class StocksOutController extends Controller
     {
         $data = $this->table::findOrFail($id);
         $members = \App\Models\Member::all();
-        $items = \App\Models\Item::all();
+        $items = \App\Models\Item::latest()->get();
         return view('stocks.out.edit',compact('data', 'members','items'));
     }
 

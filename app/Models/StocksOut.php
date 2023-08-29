@@ -28,7 +28,7 @@ class StocksOut extends Model
     }
     public function image(): BelongsTo
     {
-        return $this->belongsTo(Image::class,'int_no', 'int_no');
+        return $this->belongsTo(Image::class,'int_no', 'int_no')->where('images.type','=', 'out');
     }
     public function item(): BelongsTo
     {

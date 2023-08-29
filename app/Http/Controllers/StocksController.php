@@ -23,10 +23,9 @@ class StocksController extends Controller
     }
     public function getInt(Request $request){
         if($request->type == 'in'){
-        $data = StocksIn::has('image', '=', 0)->select('int_no')->orderBy('date', 'desc')->get();
-        }
-        if($request->type == 'out'){
-            $data = StocksOut::has('image', '=', 0)->select('int_no')->orderBy('date', 'desc')->get();
+           $data = StocksIn::has('image', '=', 0)->select('int_no')->orderBy('date', 'desc')->get();
+        }else{
+           $data = StocksOut::has('image', '=', 0)->select('int_no')->orderBy('date', 'desc')->get();
         }
         return response()->json($data);
         

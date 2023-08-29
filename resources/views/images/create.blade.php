@@ -19,7 +19,7 @@
         </select>
         <label class="form-label">Int No</label>
         <select class="select2 form-control" required name="int_no" id="int_no">
-          <option value="">Select Int No</option>
+          
         </select>
         <label class="col-sm-3 col-form-label">Upload Image</label>
         <div class="col-sm-9">
@@ -29,9 +29,9 @@
         <strong>{{ $message }}</strong>
          </span>
          @enderror
-        <img id="preview" src="#" alt="your name" class="mt-3" style="display:none;"/>
+        <img id="preview" src="#" alt="your name" class="mt-3 img-fluid" style="display:none;"/>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary my-2">Submit</button>
     </form>
   </main>
 
@@ -54,6 +54,7 @@
         });
       $('#type').on('change', function () {
           var type = this.value;
+          $("#int_no").html('<option value="">Select Int No</option>');
           $.ajax({
               url: "/get-int",
               type: 'POST',
@@ -61,6 +62,7 @@
                   type: type,
               },
               success:function(response){
+                
                         $.each(response, function (key, value) {
                             $("#int_no").append('<option value="' + value
                                 .int_no + '">' + value.int_no + '</option>');

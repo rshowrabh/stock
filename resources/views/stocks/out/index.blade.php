@@ -109,7 +109,7 @@
                 <td>
                   @if($data->image)
                   <a class="venobox" data-gall="{{$data->image->type}}" href="storage/images/{{$data->image->type}}/{{$data->image->name}}">
-                  <img class="img-fluid" width="50" height="50" src="storage/images/{{$data->image->type}}/{{$data->image->name}}" alt="No image">
+                  <img class="img-fluid" width="50" height="50" src="/storage/images/{{$data->image->type}}/{{$data->image->name}}" alt="No image">
                 </a>
                 @endif
               </td>

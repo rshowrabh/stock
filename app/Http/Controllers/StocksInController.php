@@ -29,7 +29,7 @@ class StocksInController extends Controller
      */
     public function create()
     {
-        $items = \App\Models\Item::all();
+         $items = \App\Models\Item::latest()->get();
          return view('stocks.in.create', compact('items'));
     }
 
@@ -73,7 +73,7 @@ class StocksInController extends Controller
     public function edit($id)
     {
         $data = $this->table::find($id);
-        $items = \App\Models\Item::all();
+        $items = \App\Models\Item::latest()->get();
         return view('stocks.in.edit',compact('data', 'items'));
     }
 
