@@ -10,7 +10,7 @@ use App\Models\StocksOut;
 class StocksController extends Controller
 {
     public function index(){
-        $datas = Item::paginate(10);
+        $datas = Item::latest('updated_at')->paginate(10);
         $items = Item::all();
         $rank = $datas->firstItem();
         return view('stocks.index',compact('rank','datas','items'));
@@ -23,9 +23,9 @@ class StocksController extends Controller
     }
     public function getInt(Request $request){
         if($request->type == 'in'){
-           $data = StocksIn::has('image', '=', 0)->select('int_no')->orderBy('date', 'desc')->get();
+           $data = StocksIn::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
         }else{
-           $data = StocksOut::has('image', '=', 0)->select('int_no')->orderBy('date', 'desc')->get();
+           $data = StocksOut::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
         }
         return response()->json($data);
         

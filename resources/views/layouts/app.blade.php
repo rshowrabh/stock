@@ -33,15 +33,12 @@
              <!-- Sidebar - Brand -->
              <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Stock Management</div>
             </a>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                    aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                <a class="nav-link">
                     <span>Menu</span>
                 </a>
                 <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
@@ -63,7 +60,7 @@
                     </div>
                 </div>
             </li>
-            <p class="btn btn-success btn-sm" >{{Auth::user()->name}}</p>       
+            <p class="btn btn-success btn-sm" >{{Auth::user()->name ?? ""}}</p>       
         </ul>
         <!-- End of Sidebar -->
 
