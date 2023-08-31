@@ -37,6 +37,9 @@
             </div>
           </form>
         </div>
+        <div class="col-7 text-right">
+          <a href="{{route('pdf')}}" class="btn btn-primary">Export to PDF</a>
+        </div>
       </div>
         <div class="d-flex justify-content-center">
         <table class="my-2 table w-50 table-bordered">

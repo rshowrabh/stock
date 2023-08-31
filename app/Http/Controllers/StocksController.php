@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\StocksIn;
 use App\Models\StocksOut;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class StocksController extends Controller
 {
@@ -30,4 +31,11 @@ class StocksController extends Controller
         return response()->json($data);
         
     }
+    // Generate PDF
+    public function createPDF() {
+       $datas = Item::all();
+       $pdf = PDF::loadView('inc.pdf', compact('datas'));
+       return $pdf->download(date('Y-m-d-H-i-s').'.pdf');
+
+      }
 }
