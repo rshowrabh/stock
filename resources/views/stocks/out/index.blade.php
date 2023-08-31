@@ -90,7 +90,7 @@
                 <th scope="col">Member Name</th>                
                 <th scope="col">Date</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Commnet</th>
+                <th scope="col">Comment</th>
                 <th scope="col">Image</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
@@ -105,7 +105,7 @@
                 <td>{{$data->member->name ?? ''}}</td>
                 <td>{{$data->date}}</td>
                 <td>{{$data->quantity}}</td>
-                <td>{{$data->comment}}</td>
+                <td>{{$data->comment ?? ''}}</td>
                 <td>
                   @if($data->image)
                   <a class="venobox" data-gall="{{$data->image->type}}" href="storage/images/{{$data->image->type}}/{{$data->image->name}}">

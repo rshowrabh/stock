@@ -25,6 +25,8 @@
      </select>
         <label class="form-label">Item Name</label>
         <input required value="{{ old('name') }}" name="name" type="name" class="form-control"  aria-describedby="nameHelp">
+        <label class="form-label">Comment</label>
+        <input  value="{{ old('comment') }}" name="comment" type="name" class="form-control"  aria-describedby="nameHelp">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

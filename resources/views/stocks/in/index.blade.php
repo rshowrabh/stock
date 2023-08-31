@@ -72,7 +72,7 @@
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
                 <th scope="col">Total Price</th>
-                <th scope="col">Commnet</th>
+                <th scope="col">Comment</th>
                 <th scope="col">Image</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
@@ -88,7 +88,7 @@
                 <td>{{$data->quantity}}</td>
                 <td>{{$data->price}}</td>
                 <td>{{$data->price * $data->quantity}}</td>
-                <td>{{$data->comment}}</td>
+                <td>{{$data->comment ?? ''}}</td>
                 <td>
                   @if($data->image)
                   <a class="venobox" data-gall="in" href="/storage/images/in/{{$data->image->name}}">

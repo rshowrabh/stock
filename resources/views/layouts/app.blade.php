@@ -31,10 +31,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
              <!-- Sidebar - Brand -->
-             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                </div>
-                <div class="sidebar-brand-text mx-3">Stock Management</div>
+             <a class="sidebar-brand p-0" href="/">
+                Bangladesh Accreditation Council
             </a>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
@@ -128,7 +126,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Website: <a href="https://www.bac.gov.bd">www.bac.gov.bd</a></span>
                     </div>
                 </div>
             </footer>

@@ -14,6 +14,7 @@ class Item extends Model
         'name',
         'user_id',
         'category_id',
+        'comment',
     ];
 
     public function category(): BelongsTo

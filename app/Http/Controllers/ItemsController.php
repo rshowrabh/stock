@@ -92,6 +92,7 @@ class ItemsController extends Controller
         'name'=>$request->name,
         'category_id' =>  $request->category_id,
         'user_id' =>  \Auth::id(),
+        'comment' =>  $request->comment,
     ]);
         return redirect()->route('items.index')->with('message', 'Item Updated');
     }

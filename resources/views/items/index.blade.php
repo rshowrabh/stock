@@ -29,6 +29,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Items Name</th>
                 <th scope="col">Items Category</th>
+                <th scope="col">Comment</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>
@@ -39,6 +40,7 @@
                 <th scope="row">{{$rank++}}</th>
                 <td>{{$data->name}}</td>
                 <td>{{$data->category->name ?? ''}}</td>
+                <td>{{$data->comment}}</td>
                 <td><a href="{{route('items.edit', $data->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
                   <td>
                     <form method="post" action="{{ route('items.destroy', $data->id) }}">               

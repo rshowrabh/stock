@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->string('name')->unique();
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

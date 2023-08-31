@@ -17,9 +17,7 @@ Route::get('/link', function () {
     Artisan::call('storage:link');
 });
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [App\Http\Controllers\StocksController::class, 'index'])->middleware('auth');
 
 Auth::routes();
 
