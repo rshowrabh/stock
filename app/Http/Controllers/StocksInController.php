@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade\PDF;
 
 class StocksInController extends Controller
 {
@@ -128,5 +128,11 @@ class StocksInController extends Controller
         $items = \App\Models\Item::all();
         return view('stocks.in.index',compact('datas', 'rank', 'items'));
     }
+
+    public function createPDF() {
+        $datas = $this->table::all();
+        $pdf = PDF::loadView('inc.pdf_in', compact('datas'));
+        return $pdf->download(date('Y-m-d-H-i-s').'.pdf');
+       }
     
 }

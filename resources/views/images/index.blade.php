@@ -82,4 +82,5 @@
 </div>
 
 @include('inc.venobox')
+@include('inc.select2')
 @endsection

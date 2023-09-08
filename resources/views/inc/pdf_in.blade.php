@@ -23,20 +23,24 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Item Name</th>
-                <th scope="col">Item In</th>
-                <th scope="col">Item Out</th>
-                <th scope="col">Item Left</th>
+                <th scope="col">Name</th>
+                <th scope="col">int_o</th>
+                <th scope="col">Date</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($datas as $i => $item)
+            @foreach ($datas as $i => $data)
                 <tr>
                     <th class="lighter" scope="row">{{ $loop->iteration }}</th>
-                    <th class="lighter">{{ $item->name }}</th>
-                    <th class="lighter">{{ $item->stocks_in_total }}</th>
-                    <th class="lighter">{{ $item->stocks_out_total }}</th>
-                    <th class="bold">{{ $item->stocks_left }}</th>
+                    <td>{{ $data->item->name ?? '' }}</td>
+                    <td>{{ $data->int_no }}</td>
+                    <td>{{ $data->date }}</td>
+                    <td>{{ $data->quantity }}</td>
+                    <td>{{ $data->price }}</td>
+                    <td>{{ $data->price * $data->quantity }}</td>
                 </tr>
             @endforeach
 

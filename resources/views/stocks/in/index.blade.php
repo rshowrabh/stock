@@ -2,7 +2,11 @@
 @extends('layouts.app')
 
 @section('title')
+  <div class="d-flex">
     <h3>Stocks In</h3>
+    <a href="{{route('pdf.in')}}" class="btn btn-primary ml-2">Export to PDF</a>
+  </div>
+    
 @endsection
 
 @section('content')
@@ -24,6 +28,7 @@
         <a href="{{route('stocks-in.create')}}"><button type="button" class="d-flex justify-content-left btn btn-primary">
           Add New Stock
         </button></a>
+        
       </div>
       <div class="col-4">
         <form action="{{route('search.name')}}" method="post">

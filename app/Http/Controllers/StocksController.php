@@ -36,6 +36,5 @@ class StocksController extends Controller
        $datas = Item::all();
        $pdf = PDF::loadView('inc.pdf', compact('datas'));
        return $pdf->download(date('Y-m-d-H-i-s').'.pdf');
-
       }
 }
