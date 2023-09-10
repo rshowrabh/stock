@@ -61,6 +61,18 @@
                     </div>
                 </li>
                 <p class="btn btn-success btn-sm">{{ Auth::user()->name ?? '' }}</p>
+                <div class="btn btn-danger btn-sm" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                        class="d-none">
+                        @csrf
+                    </form>
+                </div>
             </ul>
             <!-- End of Sidebar -->
 
@@ -94,19 +106,6 @@
                                             </li>
                                         @endif
                                     @else
-                                        <div class="text-danger" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
-
                                     @endguest
                                 </ul>
 

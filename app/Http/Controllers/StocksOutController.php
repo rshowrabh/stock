@@ -15,7 +15,7 @@ class StocksOutController extends Controller
      */
     public function index()
     {     
-        $datas = $this->table::orderBy('date', 'DESC')->with('member')->with('item')->paginate(10);
+        $datas = $this->table::orderBy('date', 'DESC')->with('member')->with('item')->paginate();
         $rank = $datas->firstItem();
         $items = \App\Models\Item::all();
         $members = \App\Models\Member::all();
@@ -116,14 +116,21 @@ class StocksOutController extends Controller
     }
 
     public function search_name(Request $request){
-        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('date', 'DESC')->with('member')->paginate(10);
+        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('date', 'DESC')->with('member')->paginate();
+        $rank = $datas->firstItem();
+        $items = \App\Models\Item::all();
+        $members = \App\Models\Member::all();
+        return view('stocks.out.index',compact('datas', 'rank', 'items','members'));
+    }
+    public function search_out_int(Request $request){
+        $datas = $this->table::where('int_no', 'LIKE', $request->int_no)->orderBy('date', 'DESC')->with('item')->paginate();
         $rank = $datas->firstItem();
         $items = \App\Models\Item::all();
         $members = \App\Models\Member::all();
         return view('stocks.out.index',compact('datas', 'rank', 'items','members'));
     }
     public function search_member(Request $request){
-        $datas = $this->table::where('member_id', 'LIKE', $request->member_id)->orderBy('date', 'DESC')->with('member')->paginate(10);
+        $datas = $this->table::where('member_id', 'LIKE', $request->member_id)->orderBy('date', 'DESC')->with('member')->paginate();
         $rank = $datas->firstItem();
         $items = \App\Models\Item::all();
         $members = \App\Models\Member::all();
@@ -134,7 +141,7 @@ class StocksOutController extends Controller
 
         $from = date($request->search_date_from);
         $to = date($request->search_date_to);
-        $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('member')->paginate(10);
+        $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('member')->paginate();
         $rank = $datas->firstItem();
         $items = \App\Models\StocksIn::all();
         $members = \App\Models\Member::all();

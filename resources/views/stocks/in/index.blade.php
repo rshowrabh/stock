@@ -4,8 +4,25 @@
 @section('title')
   <div class="d-flex">
     <h3>Stocks In</h3>
-    <a href="{{route('pdf.in')}}" class="btn btn-primary ml-2">Export to PDF</a>
+      <form class="ml-3" action="{{route('search.name.int')}}" method="post">
+        @csrf
+        <div class="row">
+          <div class="col-8">
+            <select required name="int_no" class="select2 form-control">
+            <option value="" >Select Item</option>
+            @foreach ($datas->unique('int_no') as $data)
+                <option value="{{$data->int_no}}">{{$data->int_no}}</option>
+            @endforeach
+           </select>
+          </div>
+          <div class="col-4">
+             <input type="submit" value="Search by Int No" class="btn btn-primary">
+          </div>
+        </form>
+    </div>
+    <a href="{{route('pdf.in')}}" class=" justify-content-right btn btn-primary ml-5">Export to PDF</a>
   </div>
+  
     
 @endsection
 

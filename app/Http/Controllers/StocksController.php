@@ -11,13 +11,13 @@ use Barryvdh\DomPDF\Facade\PDF;
 class StocksController extends Controller
 {
     public function index(){
-        $datas = Item::latest('updated_at')->paginate(10);
+        $datas = Item::latest('updated_at')->paginate();
         $items = Item::all();
         $rank = $datas->firstItem();
         return view('stocks.index',compact('rank','datas','items'));
     }
     public function search(Request $request){
-        $datas = Item::where('id', 'LIKE', $request->item_id)->paginate(10);
+        $datas = Item::where('id', 'LIKE', $request->item_id)->paginate();
         $rank = $datas->firstItem();
         $items = Item::all();
         return view('stocks.index',compact('datas', 'rank', 'items'));

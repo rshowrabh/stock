@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class ImagesController extends Controller
 {
     public function index(){
-        $images = Image::latest()->paginate(10);
+        $images = Image::latest()->paginate(15);
         $allImages = Image::latest()->select('int_no')->distinct()->get();
         return view('images.index', compact('images', 'allImages'));
       } 
@@ -71,7 +71,12 @@ class ImagesController extends Controller
     	}
     }
     public function image_search(Request $request){
-      $images = Image::where('int_no', $request->int_no)->latest()->paginate(10);
+      $images = Image::where('int_no', $request->int_no)->latest()->paginate(15);
+      $allImages = Image::latest()->select('int_no')->distinct()->get();
+      return view('images.index',compact('images','allImages'));
+  }
+    public function image_search_type(Request $request){
+      $images = Image::where('type', $request->type)->latest()->paginate(15);
       $allImages = Image::latest()->select('int_no')->distinct()->get();
       return view('images.index',compact('images','allImages'));
   }

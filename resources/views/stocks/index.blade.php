@@ -42,7 +42,7 @@
         </div>
       </div>
         <div class="d-flex justify-content-center">
-        <table class="my-2 table w-50 table-bordered">
+          <table class="my-2 table w-50 table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
