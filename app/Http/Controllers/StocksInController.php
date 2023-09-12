@@ -18,8 +18,7 @@ class StocksInController extends Controller
         
         $datas = $this->table::orderBy('date', 'DESC')->with('item')->paginate();
         $rank = $datas->firstItem();
-        $items = \App\Models\Item::all();
-        return view('stocks.in.index',compact('datas', 'rank', 'items'));
+        return view('stocks.in.index',compact('datas', 'rank',));
     }
 
     /**
@@ -29,8 +28,7 @@ class StocksInController extends Controller
      */
     public function create()
     {
-         $items = \App\Models\Item::latest()->get();
-         return view('stocks.in.create', compact('items'));
+         return view('stocks.in.create');
     }
 
     /**
@@ -115,14 +113,12 @@ class StocksInController extends Controller
     public function search_name(Request $request){
         $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('date', 'DESC')->with('item')->paginate();
         $rank = $datas->firstItem();
-        $items = \App\Models\Item::all();
-        return view('stocks.in.index',compact('datas', 'rank', 'items'));
+        return view('stocks.in.index',compact('datas', 'rank',));
     }
     public function search_name_int(Request $request){
         $datas = $this->table::where('int_no', 'LIKE', $request->int_no)->orderBy('date', 'DESC')->with('item')->paginate();
         $rank = $datas->firstItem();
-        $items = \App\Models\Item::all();
-        return view('stocks.in.index',compact('datas', 'rank', 'items'));
+        return view('stocks.in.index',compact('datas', 'rank'));
     }
 
     public function search_date(Request $request){
@@ -131,12 +127,11 @@ class StocksInController extends Controller
         $to = date($request->search_date_to);
         $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('item')->paginate();
         $rank = $datas->firstItem();
-        $items = \App\Models\Item::all();
-        return view('stocks.in.index',compact('datas', 'rank', 'items'));
+        return view('stocks.in.index',compact('datas', 'rank'));
     }
 
     public function createPDF() {
-        $datas = $this->table::all();
+        $datas = $this->table::orderBy("date", "desc")->get();
         $pdf = PDF::loadView('inc.pdf_in', compact('datas'));
         return $pdf->download(date('Y-m-d-H-i-s').'.pdf');
        }
@@ -144,8 +139,7 @@ class StocksInController extends Controller
     public function multiple_in(){
         $datas = $this->table::orderBy('date', 'DESC')->with('item')->paginate();
         $rank = $datas->firstItem();
-        $items = \App\Models\Item::all();
-        return view('stocks.in.multiple',compact('datas', 'rank', 'items'));
+        return view('stocks.in.multiple',compact('datas', 'rank'));
     }
     public function multiple_in_store(Request $request){  
         foreach ($request->item_id as $index => $unit) {

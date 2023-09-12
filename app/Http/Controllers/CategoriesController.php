@@ -40,7 +40,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:categories|min:5',
+            'name' => 'required|unique:categories',
         ]);
         $datas = \Auth::user()->category()->create($request->all());;
         return redirect()->route('category.index')->with('message', 'Category Added');
@@ -80,7 +80,7 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|min:3',
+            'name' => 'required',
         ]);
         $data=$this->table::findOrFail($id);
         $data->update([

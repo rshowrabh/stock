@@ -12,28 +12,26 @@ class StocksController extends Controller
 {
     public function index(){
         $datas = Item::latest('updated_at')->paginate();
-        $items = Item::all();
         $rank = $datas->firstItem();
-        return view('stocks.index',compact('rank','datas','items'));
+        return view('stocks.index',compact('rank','datas'));
     }
     public function search(Request $request){
         $datas = Item::where('id', 'LIKE', $request->item_id)->paginate();
         $rank = $datas->firstItem();
-        $items = Item::all();
-        return view('stocks.index',compact('datas', 'rank', 'items'));
+        return view('stocks.index',compact('datas', 'rank'));
     }
-    public function getInt(Request $request){
-        if($request->type == 'in'){
-           $data = StocksIn::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
-        }else{
-           $data = StocksOut::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
-        }
-        return response()->json($data);
+    // public function getInt(Request $request){
+    //     if($request->type == 'in'){
+    //        $data = StocksIn::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
+    //     }else{
+    //        $data = StocksOut::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
+    //     }
+    //     return response()->json($data);
         
-    }
+    // }
     // Generate PDF
     public function createPDF() {
-       $datas = Item::all();
+       $datas = Item::all()->sortBy('name');
        $pdf = PDF::loadView('inc.pdf', compact('datas'));
        return $pdf->download(date('Y-m-d-H-i-s').'.pdf');
       }

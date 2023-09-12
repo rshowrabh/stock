@@ -43,7 +43,7 @@ class ItemsController extends Controller
     {
         $validated = $request->validate([
             'category_id' => 'required',
-            'name' => 'required|unique:items|min:3',
+            'name' => 'required|unique:items',
         ]);
         $datas = \Auth::user()->items()->create($request->all());;
         return redirect()->route('items.index')->with('message', 'Item Added');
