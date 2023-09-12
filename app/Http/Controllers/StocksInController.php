@@ -141,4 +141,39 @@ class StocksInController extends Controller
         return $pdf->download(date('Y-m-d-H-i-s').'.pdf');
        }
     
+    public function multiple_in(){
+        $datas = $this->table::orderBy('date', 'DESC')->with('item')->paginate();
+        $rank = $datas->firstItem();
+        $items = \App\Models\Item::all();
+        return view('stocks.in.multiple',compact('datas', 'rank', 'items'));
+    }
+    public function multiple_in_store(Request $request){  
+        foreach ($request->item_id as $index => $unit) {
+            $units[] = [
+        'int_no' =>  $request->input('int_no'),
+        'date' =>  $request->input('date'),
+        'item_id' =>  $request->input('item_id')[$index],
+        'quantity' =>  $request->input('quantity')[$index],
+        'price' =>  $request->input('price')[$index],
+        'comment' =>  $request->input('comment')[$index],
+        'user_id' => \Auth::id(),
+            ];
+        }
+        $created = \Auth::user()->stocksIn()->insert($units);
+
+        $filenameWithExt = $request->file('name')->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME); 
+        $extension =  $request->file('name')->getClientOriginalExtension(); 
+        $filenameToStore = $filename.'-'.time(). '.'. $extension; 
+        $path = $request->file('name')->storeAs('/public/images/in',$filenameToStore); 
+        $image = new \App\Models\Image;
+        $image->int_no = $request->input('int_no');
+        $image->type = 'in';
+        $image->user_id = \Auth::id();
+        $image->name = $filenameToStore;  
+        $image->save();  
+        return redirect()->route('stocks-in.index')->with('message', 'Stocks Added');
+        // return view('stocks.in.multiple');
+    }
+
 }

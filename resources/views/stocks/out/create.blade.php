@@ -28,11 +28,9 @@
         <input required name="int_no" type="number" class="form-control" id="exampleInputname1" aria-describedby="nameHelp">
 
         <label for="exampleInputEmail1" class="form-label">Member Name</label>
-        <select required name="member_id"  class="select2 form-control">
+        <select required name="member_id"  class="member_jq select2 form-control">
           <option value="">Select Member</option>
-          @foreach ($members as $item)
-          <option value="{{$item->id}}">{{$item->name}}</option>
-          @endforeach        
+                 
         </select>
         <label for="exampleInputEmail1" class="form-label">Quantity</label>
         <input required name="quantity" type="number" class="form-control" id="exampleInputname1" aria-describedby="nameHelp">
@@ -47,6 +45,7 @@
   </main>
 
 </div>
-@include('inc.select2')
+    @include('inc.member_list')
+    @include('inc.select2')
 @endsection
 

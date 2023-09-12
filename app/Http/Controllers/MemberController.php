@@ -15,7 +15,7 @@ class MemberController extends Controller
      */
     public function index()
     {      
-        $datas = $this->table::paginate();
+        $datas = $this->table::orderBy('name')->paginate();
         $rank = $datas->firstItem();
         return view('member.index')->with(['datas' => $datas, 'rank' => $rank]);
     }

@@ -24,11 +24,8 @@
             @csrf
             <div class="row">
               <div class="col-8">
-                <select required name="item_id" class="select2 form-control">
-                <option value="" >Select Item </option>
-                @foreach ($items as $item)
-                    <option value="{{$item->id}}">{{$item->name}}</option>
-                @endforeach
+                <select required name="item_id" class="select2 items_jq form-control">
+                  <option selected value="">Select Here</option>
                </select>
               </div>
               <div class="col-4">
@@ -72,5 +69,6 @@
 </div>
 @endsection
 @push('scripts')
+  @include('inc.items_list') 
   @include('inc.select2') 
 @endpush

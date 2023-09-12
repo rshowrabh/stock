@@ -14,13 +14,9 @@
                         {!! implode('', $errors->all('<div class="alert alert-danger" role="alert"><strong>:message</strong></div>')) !!}
                     @endif
                     <label class="form-label">Item Name</label>
-                    <select required name="item_id" id="sel_emp" class="select2 form-select"
+                    <select required name="item_id"  class="items_jq select2 form-select"
                         aria-label="Default select example">
-                        <option value="" selected>Select Item</option>
-                        @foreach ($items as $item)
-                            <option class="form-control" value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-
+                        <option value="">Select Item</option>
                     </select>
                     <label class="form-label">Intendent No</label>
                     <input required value="{{ old('int_no') }}" name="int_no" type="number" class="form-control"
@@ -45,6 +41,7 @@
         </main>
 
     </div>
-    
+
+    @include('inc.items_list')
     @include('inc.select2')
 @endsection

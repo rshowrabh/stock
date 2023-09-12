@@ -8,11 +8,8 @@
         @csrf
         <div class="row">
           <div class="col-8">
-            <select required name="int_no" class="select2 form-control">
-            <option value="" >Select Item</option>
-            @foreach ($datas->unique('int_no') as $data)
-                <option value="{{$data->int_no}}">{{$data->int_no}}</option>
-            @endforeach
+            <select required name="int_no" class="int_jq select2 form-control">
+            <option value="" >Select Item</option>           
            </select>
           </div>
           <div class="col-4">
@@ -52,11 +49,8 @@
           @csrf
           <div class="row">
             <div class="col-8">
-              <select required name="item_id" class="select2 form-control">
-              <option value="" >Select Item</option>
-              @foreach ($items as $item)
-                  <option value="{{$item->id}}">{{$item->name}}</option>
-              @endforeach
+              <select required name="item_id" class="items_jq select2 form-control">
+              <option value="" >Select Item</option>             
              </select>
             </div>
             <div class="col-4">
@@ -144,5 +138,7 @@
 @endsection
 
 @push('scripts')
+  @include('inc.int_list') 
+  @include('inc.items_list') 
   @include('inc.select2') 
 @endpush

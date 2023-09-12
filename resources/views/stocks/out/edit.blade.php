@@ -17,7 +17,7 @@
 @enderror
         <input name="_method" type="hidden" value="PATCH">
         <label for="exampleInputEmail1" class="form-label">Item Name</label>
-        <select required name="item_id"  class="form-control">
+        <select required name="item_id"  class="select2 form-control">
           @foreach ($items as $item)
          <option {{($data->item_id == $item->id) ? 'selected': ''}} value="{{$item->id}}">{{$item->name}} (Item Left: {{$item->stocks_left}})</option>
          @endforeach         
@@ -26,7 +26,7 @@
         <input value="{{$data->int_no}}" required name="int_no" type="number" class="form-control" id="exampleInputname1" aria-describedby="nameHelp">
 
         <label for="exampleInputEmail1" class="form-label">Member Name</label>
-        <select required name="member_id"  class="form-control">
+        <select required name="member_id"  class="select2 form-control">
            @foreach ($members as $item)
           <option {{($data->member_id == $item->id) ? 'selected': ''}} value="{{$item->id}}">{{$item->name}}</option>
           @endforeach         
@@ -43,6 +43,6 @@
   </main>
 
 </div>
+@include('inc.select2')
 @endsection
-</div>
 

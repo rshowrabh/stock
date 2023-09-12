@@ -147,4 +147,39 @@ class StocksOutController extends Controller
         $members = \App\Models\Member::all();
         return view('stocks.out.index',compact('datas', 'rank', 'items','members'));
     }
+    public function multiple_out(){
+        $datas = $this->table::orderBy('date', 'DESC')->with('item')->paginate();
+        $rank = $datas->firstItem();
+        $items = \App\Models\Item::orderBy('name')->get();
+        return view('stocks.out.multiple',compact('datas', 'rank', 'items'));
+    }
+    public function multiple_out_store(Request $request){ 
+        // return response()->json($request->all());
+        foreach ($request->item_id as $index => $unit) {
+            $units[] = [
+        'int_no' =>  $request->input('int_no'),
+        'date' =>  $request->input('date'),
+        'member_id' =>  $request->input('member_id'),
+        'item_id' =>  $request->input('item_id')[$index],
+        'quantity' =>  $request->input('quantity')[$index],
+        'comment' =>  $request->input('comment')[$index],
+        'user_id' => \Auth::id(),
+            ];
+        }
+        $created = \Auth::user()->stocksOut()->insert($units);
+
+        $filenameWithExt = $request->file('name')->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME); 
+        $extension =  $request->file('name')->getClientOriginalExtension(); 
+        $filenameToStore = $filename.'-'.time(). '.'. $extension; 
+        $path = $request->file('name')->storeAs('/public/images/out',$filenameToStore); 
+        $image = new \App\Models\Image;
+        $image->int_no = $request->input('int_no');
+        $image->type = 'out';
+        $image->user_id = \Auth::id();
+        $image->name = $filenameToStore;  
+        $image->save();  
+        return redirect()->route('stocks-out.index')->with('message', 'Stocks Added');
+        // return view('stocks.in.multiple');
+    }
 }

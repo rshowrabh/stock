@@ -10,22 +10,20 @@
                 New Stock Out</a>
         </div>
         <div class="col-auto">
-        <form action="{{route('search.out.int')}}" method="post">
-          @csrf
-          <div class="row">
-            <div class="col-8">
-              <select required name="int_no" class="select2 form-control">
-              <option value="" >Select Item</option>
-              @foreach ($datas->unique('int_no') as $data)
-                  <option value="{{$data->int_no}}">{{$data->int_no}}</option>
-              @endforeach
-             </select>
-            </div>
-            <div class="col-4">
-               <input type="submit" value="Search by Int No" class="btn btn-primary">
-            </div>
-          </form>
-      </div>
+            <form action="{{ route('search.out.int') }}" method="post">
+                @csrf
+                <div class="row">
+                    <div class="col-8">
+                        <select required name="int_no" class="int_jq_out select2 form-control">
+                            <option value="">Select Item</option>
+
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" value="Search by Int No" class="btn btn-primary">
+                    </div>
+            </form>
+        </div>
     </div>
 @endsection
 
@@ -44,16 +42,13 @@
         <main class="py-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         <form action="{{ route('search.out.member') }}" method="post">
                             @csrf
                             <div class="row">
-                                <div class="col">
-                                    <select required name="member_id" class="select2 form-control">
-                                        <option value="">Select Item</option>
-                                        @foreach ($members as $member)
-                                            <option value="{{ $member->id }}">{{ $member->name }}</option>
-                                        @endforeach
+                                <div class="col-7">
+                                    <select required name="member_id" class="member_jq select2 form-control">
+                                        <option value="">Select Member</option>
                                     </select>
                                 </div>
                                 <div class="col">
@@ -67,11 +62,9 @@
                             @csrf
                             <div class="row">
                                 <div class="col">
-                                    <select required name="item_id" class="select2 form-control">
+                                    <select required name="item_id" class="items_jq select2 form-control">
                                         <option value="">Select Item</option>
-                                        @foreach ($items as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
+
                                     </select>
                                 </div>
                                 <div class="col">
@@ -90,8 +83,8 @@
                                         aria-label="First name">
                                 </div>
                                 <div class="col">
-                                    <input required value="{{ old('search_date_to') }}" name="search_date_to"
-                                        type="date" class="form-control" placeholder="Last name" aria-label="Last name">
+                                    <input required value="{{ old('search_date_to') }}" name="search_date_to" type="date"
+                                        class="form-control" placeholder="Last name" aria-label="Last name">
                                 </div>
                                 <div class="col">
                                     <input type="Submit" class="form-control btn btn-primary" value="Date Search"
@@ -166,5 +159,8 @@
 @endsection
 
 @push('scripts')
+    @include('inc.int_list_out')
+    @include('inc.items_list')
+    @include('inc.member_list')
     @include('inc.select2')
 @endpush

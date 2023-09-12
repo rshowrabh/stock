@@ -43,3 +43,11 @@ Route::post('/stocks', [App\Http\Controllers\StocksController::class, 'search'])
 Route::post('/get-int', [App\Http\Controllers\StocksController::class, 'getInt'])->middleware('auth');
 Route::get('/print', [App\Http\Controllers\StocksController::class, 'createPDF'])->name('pdf');
 Route::get('/pdf_in', [App\Http\Controllers\StocksInController::class, 'createPDF'])->name('pdf.in');
+
+
+Route::get('/multiple-in', [App\Http\Controllers\StocksInController::class, 'multiple_in'])->name('multiple.in');
+Route::post('/multiple-in-store', [App\Http\Controllers\StocksInController::class, 'multiple_in_store'])->name('stocks-in.multiple');
+
+Route::get('/multiple-out', [App\Http\Controllers\StocksOutController::class, 'multiple_out'])->name('multiple.out');
+Route::post('/multiple-out-store', [App\Http\Controllers\StocksOutController::class, 'multiple_out_store'])->name('stocks-out.multiple');
+
