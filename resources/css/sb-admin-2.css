@@ -11281,3 +11281,6 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+.vbox-grab .vbox-child img {
+  height: 1024px
+}
