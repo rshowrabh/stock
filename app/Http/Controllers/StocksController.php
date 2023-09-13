@@ -16,7 +16,7 @@ class StocksController extends Controller
         return view('stocks.index',compact('rank','datas'));
     }
     public function search(Request $request){
-        $datas = Item::where('id', 'LIKE', $request->item_id)->paginate();
+        $datas = Item::where('id', 'LIKE', $request->item_id)->paginate()->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.index',compact('datas', 'rank'));
     }

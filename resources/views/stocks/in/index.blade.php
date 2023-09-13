@@ -4,7 +4,7 @@
 @section('title')
   <div class="d-flex">
     <h3>Stocks In</h3>
-      <form class="ml-3" action="{{route('search.name.int')}}" method="post">
+      <form class="ml-3" action="{{route('search.name.int')}}" method="get">
         @csrf
         <div class="row">
           <div class="col-8">
@@ -45,7 +45,7 @@
         
       </div>
       <div class="col-4">
-        <form action="{{route('search.name')}}" method="post">
+        <form action="{{route('search.name')}}" method="get">
           @csrf
           <div class="row">
             <div class="col-8">
@@ -60,7 +60,7 @@
           </form>
       </div>
       <div class="col-6">
-        <form action="{{route('search.date')}}" method="post">
+        <form action="{{route('search.date')}}" method="get">
           @csrf
         <div class="row">
           <div class="col">
@@ -90,8 +90,10 @@
                 <th scope="col">Total Price</th>
                 <th scope="col">Comment</th>
                 <th scope="col">Image</th>
+                @if(\Auth::id() == '1')
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
+                @endif
               </tr>
             </thead>
             <tbody>
@@ -112,6 +114,7 @@
                   </a>
                   @endif  
                 </td>
+                @if(\Auth::id() == '1')
                 <td><a href="{{route('stocks-in.edit', $data->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
                 <td>
                   <form method="post" action="{{ route('stocks-in.destroy', $data->id) }}">
@@ -123,6 +126,7 @@
                     <button onclick="return confirm('Delete {{$data->item->name ?? ''}}')" class="btn btn-danger" type="submit">Delete</button>
                 </form>  
                 </td>
+                @endif
                 
               </tr>
               @endforeach

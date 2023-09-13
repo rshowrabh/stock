@@ -20,7 +20,7 @@
     <main class="py-2">
       <div class="row">
         <div class="col-4">
-          <form action="{{route('stocks.search')}}" method="post">
+          <form action="{{route('stocks.search')}}" method="get">
             @csrf
             <div class="row">
               <div class="col-8">

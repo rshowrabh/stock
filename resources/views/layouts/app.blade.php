@@ -58,6 +58,12 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="{{ route('images.index') }}">Images</a>
                         </div>
+                        @if(\Auth::id() == '1')
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('multiple.in') }}">Multiple In</a>
+                            <a class="collapse-item" href="{{ route('multiple.out') }}">Multiple Out</a>
+                        </div>
+                        @endif
                     </div>
                 </li>
                 <p class="btn btn-success btn-sm">{{ Auth::user()->name ?? '' }}</p>

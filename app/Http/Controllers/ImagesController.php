@@ -76,7 +76,7 @@ class ImagesController extends Controller
       return view('images.index',compact('images','allImages'));
   }
     public function image_search_type(Request $request){
-      $images = Image::where('type', $request->type)->latest()->paginate(15);
+      $images = Image::where('type', $request->type)->latest()->paginate()->withQueryString();
       $allImages = Image::latest()->select('int_no')->distinct()->get();
       return view('images.index',compact('images','allImages'));
   }

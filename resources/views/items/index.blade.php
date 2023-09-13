@@ -30,8 +30,10 @@
                 <th scope="col">Items Name</th>
                 <th scope="col">Items Category</th>
                 <th scope="col">Comment</th>
+                @if(\Auth::id() == '1')
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
+                @endif
               </tr>
             </thead>
             <tbody>
@@ -41,6 +43,7 @@
                 <td>{{$data->name}}</td>
                 <td>{{$data->category->name ?? ''}}</td>
                 <td>{{$data->comment}}</td>
+                @if(\Auth::id() == '1')
                 <td><a href="{{route('items.edit', $data->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
                   <td>
                     <form method="post" action="{{ route('items.destroy', $data->id) }}">               
@@ -48,7 +51,8 @@
                       {{ method_field('DELETE') }}                
                       <button onclick="return confirm('Delete {{$data->name}} ?')" class="btn btn-danger" type="submit">Delete</button>
                   </form>  
-                  </td>               
+                  </td>    
+                  @endif           
               </tr>
               @endforeach
              

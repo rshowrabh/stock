@@ -10,7 +10,7 @@
                 New Stock Out</a>
         </div>
         <div class="col-auto">
-            <form action="{{ route('search.out.int') }}" method="post">
+            <form action="{{ route('search.out.int') }}" method="get">
                 @csrf
                 <div class="row">
                     <div class="col-8">
@@ -43,8 +43,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-4">
-                        <form action="{{ route('search.out.member') }}" method="post">
-                            @csrf
+                        <form action="{{ route('search.out.member') }}" method="get">
+                              @csrf
                             <div class="row">
                                 <div class="col-7">
                                     <select required name="member_id" class="member_jq select2 form-control">
@@ -58,7 +58,7 @@
                         </form>
                     </div>
                     <div class="col-3">
-                        <form action="{{ route('search.out.name') }}" method="post">
+                        <form action="{{ route('search.out.name') }}" method="get">
                             @csrf
                             <div class="row">
                                 <div class="col">
@@ -74,7 +74,7 @@
                         </form>
                     </div>
                     <div class="col-5">
-                        <form action="{{ route('search.out.date') }}" method="post">
+                        <form action="{{ route('search.out.date') }}" method="get">
                             @csrf
                             <div class="row">
                                 <div class="col">
@@ -107,8 +107,10 @@
                             <th scope="col">Quantity</th>
                             <th scope="col">Comment</th>
                             <th scope="col">Image</th>
+                            @if(\Auth::id() == '1')
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -131,6 +133,7 @@
                                         </a>
                                     @endif
                                 </td>
+                                @if(\Auth::id() == '1')
                                 <td><a href="{{ route('stocks-out.edit', $data->id) }}"><button
                                             class="btn btn-secondary">Edit</button></a></td>
                                 <td>
@@ -144,6 +147,7 @@
                                             class="btn btn-danger" type="submit">Delete</button>
                                     </form>
                                 </td>
+                                @endif
 
                             </tr>
                         @endforeach

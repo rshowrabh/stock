@@ -40,7 +40,7 @@
                         </form>
                 </div>
                 <div class="col">
-                        <form action="{{ route('image.search.type') }}" method="post">
+                        <form action="{{ route('image.search.type') }}" method="get">
                             @csrf
                             <div class="row">
                                 <div class="col-8">
@@ -65,8 +65,10 @@
                             <th scope="col">Int No</th>
                             <th scope="col">Type</th>
                             <th scope="col">Image</th>
+                            @if(\Auth::id() == '1')
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -81,6 +83,7 @@
                                             src="/storage/images/{{ $image->type }}/{{ $image->name }}" alt="No Image">
                                     </a>
                                 </td>
+                                @if(\Auth::id() == '1')
                                 <td><a href="{{ route('images.edit', $image->id) }}"><button
                                             class="btn btn-secondary">Edit</button></a></td>
                                 <td>
@@ -91,6 +94,7 @@
                                             class="btn btn-danger" type="submit">Delete</button>
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
 

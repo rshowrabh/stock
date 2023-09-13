@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <h1>Multiple input</h1>
+    <h1>Multiple Out</h1>
     <div class="container">
         <form enctype="multipart/form-data" method="POST" action="{{ route('stocks-out.multiple') }}">
             @csrf
