@@ -67,6 +67,7 @@
                     </div>
                 </li>
                 <p class="btn btn-success btn-sm">{{ Auth::user()->name ?? '' }}</p>
+                <a href="{{route('change-password')}}" class="btn btn-secondary btn-sm">Change Password</a>
                 <div class="btn btn-danger btn-sm" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();

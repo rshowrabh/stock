@@ -20,6 +20,8 @@ Route::get('/link', function () {
 Route::get('/', [App\Http\Controllers\StocksController::class, 'index'])->middleware('auth');
 
 Auth::routes();
+Route::get('/change-password', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('update-password');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/category', App\Http\Controllers\CategoriesController::class)->middleware('auth');
@@ -40,7 +42,7 @@ Route::post('/images-search', [App\Http\Controllers\ImagesController::class, 'im
 Route::get('/images-search-type', [App\Http\Controllers\ImagesController::class, 'image_search_type'])->middleware('auth')->name('image.search.type');
 Route::get('/stocks', [App\Http\Controllers\StocksController::class, 'index'])->middleware('auth')->name('stocks');
 Route::get('/stocks-search', [App\Http\Controllers\StocksController::class, 'search'])->middleware('auth')->name('stocks.search');
-// Route::post('/get-int', [App\Http\Controllers\StocksController::class, 'getInt'])->middleware('auth');
+Route::post('/get-int', [App\Http\Controllers\StocksController::class, 'getInt'])->middleware('auth');
 Route::get('/print', [App\Http\Controllers\StocksController::class, 'createPDF'])->name('pdf');
 Route::get('/pdf_in', [App\Http\Controllers\StocksInController::class, 'createPDF'])->name('pdf.in');
 

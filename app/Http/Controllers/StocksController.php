@@ -20,15 +20,15 @@ class StocksController extends Controller
         $rank = $datas->firstItem();
         return view('stocks.index',compact('datas', 'rank'));
     }
-    // public function getInt(Request $request){
-    //     if($request->type == 'in'){
-    //        $data = StocksIn::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
-    //     }else{
-    //        $data = StocksOut::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
-    //     }
-    //     return response()->json($data);
+    public function getInt(Request $request){
+        if($request->type == 'in'){
+           $data = StocksIn::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
+        }else{
+           $data = StocksOut::has('image', '=', 0)->select('int_no')->distinct()->orderBy('date', 'desc')->get();
+        }
+        return response()->json($data);
         
-    // }
+    }
     // Generate PDF
     public function createPDF() {
        $datas = Item::all()->sortBy('name');

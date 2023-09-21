@@ -156,8 +156,8 @@ class StocksOutController extends Controller
             ];
         }
         $created = \Auth::user()->stocksOut()->insert($units);
-
-        $filenameWithExt = $request->file('name')->getClientOriginalName();
+        if ($request->file('name')) {
+            $filenameWithExt = $request->file('name')->getClientOriginalName();
         $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME); 
         $extension =  $request->file('name')->getClientOriginalExtension(); 
         $filenameToStore = $filename.'-'.time(). '.'. $extension; 
@@ -167,7 +167,9 @@ class StocksOutController extends Controller
         $image->type = 'out';
         $image->user_id = \Auth::id();
         $image->name = $filenameToStore;  
-        $image->save();  
+        $image->save(); 
+        }
+         
         return redirect()->route('stocks-out.index')->with('message', 'Stocks Added');
         // return view('stocks.in.multiple');
     }
