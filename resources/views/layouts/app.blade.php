@@ -11,8 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"> --}}
 
     <!-- Scripts -->
 
@@ -20,6 +19,7 @@
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @stack('scripts')
 </head>
@@ -33,6 +33,7 @@
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
+
                 <a class="sidebar-brand p-0" href="/">
                     Bangladesh Accreditation Council
                 </a>
@@ -58,16 +59,16 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="{{ route('images.index') }}">Images</a>
                         </div>
-                        @if(\Auth::id() == '1')
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('multiple.in') }}">Multiple In</a>
-                            <a class="collapse-item" href="{{ route('multiple.out') }}">Multiple Out</a>
-                        </div>
+                        @if (\Auth::id() == '1')
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="{{ route('multiple.in') }}">Multiple In</a>
+                                <a class="collapse-item" href="{{ route('multiple.out') }}">Multiple Out</a>
+                            </div>
                         @endif
                     </div>
                 </li>
-                <p class="btn btn-success btn-sm">{{ Auth::user()->name ?? '' }}</p>
-                <a href="{{route('change-password')}}" class="btn btn-secondary btn-sm">Change Password</a>
+                
+                <a href="{{ route('change-password') }}" class="btn btn-secondary btn-sm">Change Password</a>
                 <div class="btn btn-danger btn-sm" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -75,8 +76,7 @@
                         {{ __('Logout') }}
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                        class="d-none">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 </div>
@@ -90,35 +90,24 @@
                 <div id="content">
 
                     <!-- Topbar -->
-                    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-                        <div class="container">
-                            <div>
-                                @yield('title')
+                    <!-- Topbar -->
+                    <div class="bg-white shadow">
+                        <div class="row pt-1">
+                            <div class="col-md-2">
+                               @yield('title')
                             </div>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                                <ul class="navbar-nav ms-auto">
-                                    <!-- Authentication Links -->
-                                    @guest
-                                        @if (Route::has('login'))
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                            </li>
-                                        @endif
-
-                                        @if (Route::has('register'))
-                                            <li class="nav-item">
-                                                <a class="nav-link"
-                                                    href="{{ route('register') }}">{{ __('Register') }}</a>
-                                            </li>
-                                        @endif
-                                    @else
-                                    @endguest
-                                </ul>
-
+                            <div class="col-md-3">
+                                    @yield("new-button")
+                            </div>
+                            <div class="col-md-3 text-right">
+                                    @yield('pdf-button')
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <p class="btn btn-success btn-sm">{{\Auth::user()->name ?? ''}}</p>                               
                             </div>
                         </div>
-                    </nav>
+                    </div>
+                <!-- End of Topbar -->
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->

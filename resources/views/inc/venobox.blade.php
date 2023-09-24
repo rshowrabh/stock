@@ -5,4 +5,11 @@
  new VenoBox({
     selector: '.venobox',
 });
+
+
 </script>
+<style>
+    .vbox-child img{
+        height : 1024px;
+    }
+</style>
