@@ -15,7 +15,7 @@ class StocksOutController extends Controller
      */
     public function index()
     {     
-        $datas = $this->table::orderBy('date', 'DESC')->with('member')->with('item')->paginate();
+        $datas = $this->table::orderBy('int_no', 'DESC')->with('member')->with('item')->paginate();
         $rank = $datas->firstItem();
         return view('stocks.out.index',compact('datas', 'rank'));
     }
@@ -113,17 +113,17 @@ class StocksOutController extends Controller
     }
 
     public function search_name(Request $request){
-        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('date', 'DESC')->with('member')->paginate()->withQueryString();
+        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('int_no', 'DESC')->with('member')->paginate()->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.out.index',compact('datas', 'rank'));
     }
     public function search_out_int(Request $request){
-        $datas = $this->table::where('int_no', 'LIKE', $request->int_no)->orderBy('date', 'DESC')->with('item')->paginate()->withQueryString();
+        $datas = $this->table::where('int_no', 'LIKE', $request->int_no)->orderBy('int_no', 'DESC')->with('item')->paginate()->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.out.index',compact('datas', 'rank'));
     }
     public function search_member(Request $request){
-        $datas = $this->table::where('member_id', 'LIKE', $request->member_id)->orderBy('date', 'DESC')->with('member')->paginate()->withQueryString();
+        $datas = $this->table::where('member_id', 'LIKE', $request->member_id)->orderBy('int_no', 'DESC')->with('member')->paginate()->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.out.index',compact('datas', 'rank'));
     }
@@ -132,12 +132,12 @@ class StocksOutController extends Controller
 
         $from = date($request->search_date_from);
         $to = date($request->search_date_to);
-        $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('member')->paginate()->withQueryString();
+        $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('int_no', 'DESC')->with('member')->paginate()->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.out.index',compact('datas', 'rank'));
     }
     public function multiple_out(){
-        $datas = $this->table::orderBy('date', 'DESC')->with('item')->paginate();
+        $datas = $this->table::orderBy('int_no', 'DESC')->with('item')->paginate();
         $rank = $datas->firstItem();
         $items = \App\Models\Item::orderBy('name')->get();
         return view('stocks.out.multiple',compact('datas', 'rank', 'items'));

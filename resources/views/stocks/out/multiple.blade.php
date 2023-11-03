@@ -27,6 +27,7 @@
                 <table class="table  table-bordered">
                     <thead>
                         <tr>
+                            <td>#</td>
                             <td>Item Name</td>
                             <td>Quantity</td>
                             <td>Comment</td>
@@ -35,6 +36,7 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td scope='row' style="width: 100px"><input type="number" value="1" class="form-control"></td>
                             <td>
                                 <select required name="item_id[]"  class="form-control">
                                     <option value="">Select Item</option>
@@ -48,7 +50,7 @@
                                     placeholder="Quantity">
                             </td>
                             <td>
-                                <input name="comment[]" required type="text" class="form-control" id="inputDate"
+                                <input name="comment[]"  type="text" class="form-control" id="inputDate"
                                     placeholder="Comment">
                             </td>
                             <td>

@@ -16,7 +16,7 @@ class StocksInController extends Controller
     public function index()
     {
         
-        $datas = $this->table::orderBy('date', 'DESC')->with('item')->paginate();
+        $datas = $this->table::orderBy('int_no', 'DESC')->with('item')->paginate();
         $rank = $datas->firstItem();
         return view('stocks.in.index',compact('datas', 'rank',));
     }
@@ -111,12 +111,12 @@ class StocksInController extends Controller
     }
 
     public function search_name(Request $request){
-        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('date', 'DESC')->with('item')->paginate()->withQueryString();
+        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('int_no', 'DESC')->with('item')->paginate()->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.in.index',compact('datas', 'rank',));
     }
     public function search_name_int(Request $request){
-        $datas = $this->table::where('int_no', 'LIKE', $request->int_no)->orderBy('date', 'DESC')->with('item')->paginate()->withQueryString();
+        $datas = $this->table::where('int_no', 'LIKE', $request->int_no)->orderBy('int_no', 'DESC')->with('item')->paginate()->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.in.index',compact('datas', 'rank'));
     }
@@ -125,7 +125,7 @@ class StocksInController extends Controller
 
         $from = date($request->search_date_from);
         $to = date($request->search_date_to);
-        $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('date', 'DESC')->with('item')->paginate()->withQueryString();
+        $datas = $this->table::whereBetween('date', [$from, $to])->orderBy('int_no', 'DESC')->with('item')->paginate()->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.in.index',compact('datas', 'rank'));
     }
@@ -137,7 +137,7 @@ class StocksInController extends Controller
        }
     
     public function multiple_in(){
-        $datas = $this->table::orderBy('date', 'DESC')->with('item')->paginate();
+        $datas = $this->table::orderBy('int_no', 'DESC')->with('item')->paginate();
         $rank = $datas->firstItem();
         return view('stocks.in.multiple',compact('datas', 'rank'));
     }

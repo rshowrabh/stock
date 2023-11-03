@@ -116,6 +116,7 @@
                             <th scope="col">Int No</th>
                             <th scope="col">Item Name</th>
                             <th scope="col">Member Name</th>
+                            <th scope="col">Designation</th>
                             <th scope="col">Date</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Comment</th>
@@ -133,9 +134,10 @@
                                 <td>{{ $data->int_no }}</td>
                                 <td>{{ $data->item->name ?? '' }}</td>
                                 <td>{{ $data->member->name ?? '' }}</td>
+                                <td>{{ $data->member->title ?? '' }}</td>
                                 <td>{{ $data->date }}</td>
                                 <td>{{ $data->quantity }}</td>
-                                <td>{{ $data->comment ?? '' }}</td>
+                                <td class="comment">{{ $data->comment ?? '' }}</td>
                                 <td>
                                     @if ($data->image)
                                         <a class="venobox" data-gall="{{ $data->image->type }}"

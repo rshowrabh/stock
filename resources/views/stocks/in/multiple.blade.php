@@ -22,6 +22,7 @@
                 <table class="table  table-bordered">
                     <thead>
                         <tr>
+                            <td>#</td>
                             <td>Item Name</td>
                             <td>Quantity</td>
                             <td>Price</td>
@@ -31,6 +32,7 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td scope='row' style="width: 100px"><input type="number" value="1" class="form-control"></td>
                             <td>
                                 <select name="item_id[]" required type="name" class="items_jq form-control"
                                     id="name" placeholder="int_no">
@@ -46,7 +48,7 @@
                                     placeholder="Price">
                             </td>
                             <td>
-                                <input name="comment[]" required type="text" class="form-control" id="inputDate"
+                                <input name="comment[]"  type="text" class="form-control" id="inputDate"
                                     placeholder="Comment">
                             </td>
                             <td>

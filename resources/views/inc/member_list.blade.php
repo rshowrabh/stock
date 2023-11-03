@@ -18,7 +18,8 @@
                        for (var i = 0; i < len; i++) {
                            var id = response[i].id;
                            var name = response[i].name;
-                           var option = "<option value='" + id + "'>" + name + "</option>";
+                           var title = response[i].title;
+                           var option = "<option value='" + id + "'>" + name + ' - ' +title + "</option>";
                            $(".member_jq").append(option);
                        }
 
