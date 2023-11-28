@@ -113,13 +113,13 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Int No</th>
                             <th scope="col">Item Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Int No</th>
                             <th scope="col">Member Name</th>
                             <th scope="col">Designation</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Quantity</th>
                             <th scope="col">Comment</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">Image</th>
                             @if (\Auth::id() == '1')
                                 <th scope="col">Edit</th>
@@ -131,13 +131,13 @@
                         @foreach ($datas as $data)
                             <tr>
                                 <th scope="row">{{ $rank++ }}</th>
-                                <td>{{ $data->int_no }}</td>
                                 <td>{{ $data->item->name ?? '' }}</td>
+                                <td>{{ $data->date }}</td>
+                                <td>{{ $data->int_no }}</td>
                                 <td>{{ $data->member->name ?? '' }}</td>
                                 <td>{{ $data->member->title ?? '' }}</td>
-                                <td>{{ $data->date }}</td>
-                                <td>{{ $data->quantity }}</td>
                                 <td class="comment">{{ $data->comment ?? '' }}</td>
+                                <td>{{ $data->quantity }}</td>
                                 <td>
                                     @if ($data->image)
                                         <a class="venobox" data-gall="{{ $data->image->type }}"
