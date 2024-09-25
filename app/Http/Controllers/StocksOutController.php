@@ -113,7 +113,7 @@ class StocksOutController extends Controller
     }
 
     public function search_name(Request $request){
-        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('int_no', 'DESC')->with('member')->paginate()->withQueryString();
+        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('int_no', 'DESC')->with('member')->paginate(10)->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.out.index',compact('datas', 'rank'));
     }
@@ -149,9 +149,9 @@ class StocksOutController extends Controller
         'int_no' =>  $request->input('int_no'),
         'date' =>  $request->input('date'),
         'member_id' =>  $request->input('member_id'),
+        'comment' =>  $request->input('comment'),
         'item_id' =>  $request->input('item_id')[$index],
         'quantity' =>  $request->input('quantity')[$index],
-        'comment' =>  $request->input('comment')[$index],
         'user_id' => \Auth::id(),
             ];
         }

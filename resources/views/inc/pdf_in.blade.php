@@ -24,6 +24,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">comment</th>
                 <th scope="col">int_o</th>
                 <th scope="col">Date</th>
                 <th scope="col">Quantity</th>
@@ -36,6 +38,8 @@
                 <tr>
                     <th class="lighter" scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $data->item->name ?? '' }}</td>
+                    <td>{{ $data->item->category->name ?? '' }}</td>
+                    <td>{{ $data->comment ?? '' }}</td>
                     <td>{{ $data->int_no }}</td>
                     <td>{{ $data->date }}</td>
                     <td>{{ $data->quantity }}</td>

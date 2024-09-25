@@ -10,15 +10,18 @@
         <form enctype="multipart/form-data" method="POST" action="{{ route('stocks-out.multiple') }}">
             @csrf
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <select required name="member_id"  class="member_jq select2 form-control">
                         <option value="">Select Member</option>             
                       </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
+                    <input name="comment"  type="text" class="form-control" id="inputDate" placeholder="Comment">
+                </div>
+                <div class="form-group col-md-6">
                     <input name="int_no" required type="name" class="form-control" id="name" placeholder="Int no">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <input name="date" required type="date" class="form-control" id="inputDate" placeholder="Date">
                 </div>
             </div>
@@ -30,8 +33,7 @@
                             <td>#</td>
                             <td>Item Name</td>
                             <td>Quantity</td>
-                            <td>Comment</td>
-                            <td>Action</td>
+                            <td>Action</td> 
                         </tr>
                     </thead>
                     <tbody>
@@ -48,10 +50,6 @@
                             <td>
                                 <input name="quantity[]" required type="number" class="form-control" id="inputDate"
                                     placeholder="Quantity">
-                            </td>
-                            <td>
-                                <input name="comment[]"  type="text" class="form-control" id="inputDate"
-                                    placeholder="Comment">
                             </td>
                             <td>
                                 <span class="dd btn btn-primary">

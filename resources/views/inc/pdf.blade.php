@@ -24,6 +24,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Item Name</th>
+                <th scope="col">Category</th>
                 <th scope="col">Item In</th>
                 <th scope="col">Item Out</th>
                 <th scope="col">Item Left</th>
@@ -34,6 +35,7 @@
                 <tr>
                     <th class="lighter" scope="row">{{ $loop->iteration }}</th>
                     <th class="lighter">{{ $item->name }}</th>
+                    <th class="lighter">{{ $item->category->name }}</th>
                     <th class="lighter">{{ $item->stocks_in_total }}</th>
                     <th class="lighter">{{ $item->stocks_out_total }}</th>
                     <th class="bold">{{ $item->stocks_left }}</th>
