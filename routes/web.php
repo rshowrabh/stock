@@ -35,6 +35,8 @@ Route::get('/search-out-name', [App\Http\Controllers\StocksOutController::class,
 Route::get('/search-out-member', [App\Http\Controllers\StocksOutController::class, 'search_member'])->middleware('auth')->name('search.out.member');
 Route::get('/search-out-date', [App\Http\Controllers\StocksOutController::class, 'search_date'])->middleware('auth')->name('search.out.date');
 Route::get('/search-out-int', [App\Http\Controllers\StocksOutController::class, 'search_out_int'])->middleware('auth')->name('search.out.int');
+Route::get('/search-member-item', [App\Http\Controllers\StocksOutController::class, 'search_member_item'])->middleware('auth')->name('search.memeber.item');
+Route::get('/search-member-item-inex', [App\Http\Controllers\StocksOutController::class, 'index_advance_search'])->middleware('auth')->name('stocks-out.index.advance_search');
 Route::get('/category-list', [App\Http\Controllers\CategoriesController::class, 'list'])->middleware('auth')->name('category.list');
 Route::resource('/member', App\Http\Controllers\MemberController::class)->middleware('auth');
 Route::resource('/images', App\Http\Controllers\ImagesController::class)->middleware('auth');

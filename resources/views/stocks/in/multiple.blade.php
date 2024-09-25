@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-    <h3>Multiple In</h3>
+    <h3>Voucher Input Multiple Item</h3>
 @endsection
 
 @section('content')
-    <h1>Multiple input</h1>
     <div class="container">
         <form enctype="multipart/form-data" method="POST" action="{{ route('stocks-in.multiple') }}">
             @csrf

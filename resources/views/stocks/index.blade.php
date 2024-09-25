@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <h3>Stocks Left</h3>
+    <h3>Stocks Report</h3>
 @endsection
 
 @section('content')

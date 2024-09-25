@@ -19,6 +19,12 @@ class StocksOutController extends Controller
         $rank = $datas->firstItem();
         return view('stocks.out.index',compact('datas', 'rank'));
     }
+    public function index_advance_search()
+    {     
+        $datas = $this->table::orderBy('int_no', 'DESC')->with('member')->with('item')->paginate();
+        $rank = $datas->firstItem();
+        return view('stocks.out.advance_search',compact('datas', 'rank'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -126,6 +132,11 @@ class StocksOutController extends Controller
         $datas = $this->table::where('member_id', 'LIKE', $request->member_id)->orderBy('int_no', 'DESC')->with('member')->paginate()->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.out.index',compact('datas', 'rank'));
+    }
+    public function search_member_item(Request $request){
+        $datas = $this->table::where('member_id', 'LIKE', $request->member_id)->where('item_id', 'LIKE', $request->item_id)->orderBy('int_no', 'DESC')->with('member')->paginate()->withQueryString();
+        $rank = $datas->firstItem();
+        return view('stocks.out.advance_search',compact('datas', 'rank'));
     }
 
     public function search_date(Request $request){

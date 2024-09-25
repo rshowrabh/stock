@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-    <h3>Multiple Out</h3>
+    <h3>Requisition Input Multiple Item</h3>
 @endsection
 
 @section('content')
-    <h1>Multiple Out</h1>
     <div class="container">
         <form enctype="multipart/form-data" method="POST" action="{{ route('stocks-out.multiple') }}">
             @csrf

@@ -50,19 +50,22 @@
                             <a class="collapse-item" href="{{ route('items.index') }}">Items</a>
                         </div>
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('stocks-in.index') }}">Stock In</a>
-                            <a class="collapse-item" href="{{ route('stocks-out.index') }}">Stock Out</a>
+                            <a class="collapse-item" href="{{ route('stocks-in.index') }}">Stock In Voucher List</a>
                         </div>
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('stocks') }}">Stocks</a>
+                            <a class="collapse-item" href="{{ route('stocks-out.index') }}">Stock Out Requisition List</a>
+                            <a class="collapse-item" href="{{ route('stocks-out.index.advance_search') }}">Stock Out Advance Search</a>
                         </div>
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('images.index') }}">Images</a>
+                            <a class="collapse-item" href="{{ route('stocks') }}">Stocks Report</a>
+                        </div>
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('images.index') }}">Images Edit</a>
                         </div>
                         @if (\Auth::id() == '1')
                             <div class="bg-white py-2 collapse-inner rounded">
-                                <a class="collapse-item" href="{{ route('multiple.in') }}">Multiple In</a>
-                                <a class="collapse-item" href="{{ route('multiple.out') }}">Multiple Out</a>
+                                <a class="collapse-item" href="{{ route('multiple.in') }}">Voucher In Multiple Item</a>
+                                <a class="collapse-item" href="{{ route('multiple.out') }}">Requisition Multiple Item</a>
                             </div>
                         @endif
                     </div>
@@ -93,11 +96,11 @@
                     <!-- Topbar -->
                     <div class="bg-white shadow">
                         <div class="row pt-1">
+                            <div class="col-md-2 ml-1">
+                                @yield("new-button")
+                            </div>
                             <div class="col-md-2">
                                @yield('title')
-                            </div>
-                            <div class="col-md-3">
-                                    @yield("new-button")
                             </div>
                             <div class="col-md-3 text-right">
                                     @yield('pdf-button')
