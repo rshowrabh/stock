@@ -113,7 +113,7 @@ class StocksOutController extends Controller
     }
 
     public function search_name(Request $request){
-        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('int_no', 'DESC')->with('member')->paginate()->withQueryString();
+        $datas = $this->table::where('item_id', 'LIKE', $request->item_id)->orderBy('int_no', 'DESC')->with('member')->paginate(10)->withQueryString();
         $rank = $datas->firstItem();
         return view('stocks.out.index',compact('datas', 'rank'));
     }

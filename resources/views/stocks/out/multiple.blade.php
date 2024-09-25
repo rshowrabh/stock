@@ -21,6 +21,9 @@
                 <div class="form-group col-md-4">
                     <input name="date" required type="date" class="form-control" id="inputDate" placeholder="Date">
                 </div>
+                <div class="form-group col-md-4">
+                    <input name="comment"  type="text" class="form-control" id="inputDate" placeholder="Comment">
+                </div>
             </div>
             <div class="form-row newrow">
 
@@ -30,8 +33,7 @@
                             <td>#</td>
                             <td>Item Name</td>
                             <td>Quantity</td>
-                            <td>Comment</td>
-                            <td>Action</td>
+                            <td>Action</td> 
                         </tr>
                     </thead>
                     <tbody>
@@ -48,10 +50,6 @@
                             <td>
                                 <input name="quantity[]" required type="number" class="form-control" id="inputDate"
                                     placeholder="Quantity">
-                            </td>
-                            <td>
-                                <input name="comment[]"  type="text" class="form-control" id="inputDate"
-                                    placeholder="Comment">
                             </td>
                             <td>
                                 <span class="dd btn btn-primary">

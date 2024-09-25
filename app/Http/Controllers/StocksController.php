@@ -11,7 +11,7 @@ use Barryvdh\DomPDF\Facade\PDF;
 class StocksController extends Controller
 {
     public function index(){
-        $datas = Item::latest('updated_at')->paginate();
+        $datas = Item::orderBy('name')->paginate();
         $rank = $datas->firstItem();
         return view('stocks.index',compact('rank','datas'));
     }
