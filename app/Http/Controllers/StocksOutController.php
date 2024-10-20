@@ -160,9 +160,9 @@ class StocksOutController extends Controller
         'int_no' =>  $request->input('int_no'),
         'date' =>  $request->input('date'),
         'member_id' =>  $request->input('member_id'),
+        'comment' =>  $request->input('comment'),
         'item_id' =>  $request->input('item_id')[$index],
         'quantity' =>  $request->input('quantity')[$index],
-        'comment' =>  $request->input('comment')[$index],
         'user_id' => \Auth::id(),
             ];
         }
