@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class StocksOutController extends Controller
 {
@@ -22,9 +23,17 @@ class StocksOutController extends Controller
     public function index_advance_search()
     {     
         $datas = $this->table::orderBy('int_no', 'DESC')->with('member')->with('item')->paginate();
-        $rank = $datas->firstItem();
+        $rank = $datas->firstItem(); 
         return view('stocks.out.advance_search',compact('datas', 'rank'));
     }
+    // Generate PDF
+     public function index_advance_pdf(Request $request) {
+        $from = date($request->search_date_from);
+        $to = date($request->search_date_to);
+        $datas = $this->table::whereBetween('date', [$from, $to])->where('item_id', 'LIKE', $request->item_id)->with('member')->get();
+        $pdf = PDF::loadView('inc.pdf_date', compact('datas'))->setPaper('a4', 'landscape');
+        return $pdf->download(date('Y-m-d-H-i-s').'.pdf');
+       }
 
     /**
      * Show the form for creating a new resource.

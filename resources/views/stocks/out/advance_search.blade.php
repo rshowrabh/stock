@@ -25,6 +25,43 @@
     <div class="text-center">
         <main class="py-2">
             <div class="container">
+            <table class="my-2 table table-bordered text-center">
+                    <tbody>
+                        <tr>    
+                            <td>
+                                <form action="{{ route('search.item.date') }}" method="get">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col">
+                                        <div class="row">
+                                        <div class="col">
+                                            <input required value="{{ old('search_date_from') }}" name="search_date_from"
+                                                type="date" class="form-control" placeholder="First name"
+                                                aria-label="First name">
+                                        </div>
+                                        <div class="col">
+                                            <input required value="{{ old('search_date_to') }}" name="search_date_to"
+                                                type="date" class="form-control" placeholder="Last name"
+                                                aria-label="Last name">
+                                        </div>
+                                    </div>
+                                        </div>
+                                        <div class="col">
+                                            <select required name="item_id" class="items_jq select2 form-control">
+                                                <option value="">Select Item</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary svg">
+                                                PDF 
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <table class="my-2 table table-bordered text-center">
                     <tbody>
                         <tr>    
