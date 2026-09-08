@@ -46,10 +46,10 @@
                 @if(\Auth::id() == '1')
                 <td><a href="{{route('items.edit', $data->id)}}"><button class="btn btn-secondary">Edit</button></a></td>
                   <td>
-                    <form method="post" action="{{ route('items.destroy', $data->id) }}">               
+                    <form method="post" action="{{ route('items.destroy', $data->id) }}" target="_blank">               
                       @csrf
                       {{ method_field('DELETE') }}                
-                      <button onclick="return confirm('Delete {{$data->name}} ?')" class="btn btn-danger" type="submit">Delete</button>
+                      <button class="btn btn-danger" type="submit">Delete</button>
                   </form>  
                   </td>    
                   @endif           

@@ -16,7 +16,7 @@ class ItemsController extends Controller
      */
     public function index()
     {      
-        $datas = $this->table::latest()->paginate(15);
+        $datas = $this->table::orderBy('name')->paginate(15);
         $rank = $datas->firstItem();
         $category = \App\Models\Category::all();
         return view('items.index',compact('datas', 'rank', 'category'));

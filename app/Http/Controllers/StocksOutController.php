@@ -30,9 +30,11 @@ class StocksOutController extends Controller
      public function index_advance_pdf(Request $request) {
         $from = date($request->search_date_from);
         $to = date($request->search_date_to);
+        $names = $items = \App\Models\Item::find($request->item_id)->name;
+        $name = str_replace(" ", "_", $names);
         $datas = $this->table::whereBetween('date', [$from, $to])->where('item_id', 'LIKE', $request->item_id)->with('member')->get();
         $pdf = PDF::loadView('inc.pdf_date', compact('datas'))->setPaper('a4', 'landscape');
-        return $pdf->download(date('Y-m-d-H-i-s').'.pdf');
+        return $pdf->download(date('M-y_').$name.'.pdf');
        }
 
     /**
@@ -190,7 +192,7 @@ class StocksOutController extends Controller
         $image->save(); 
         }
          
-        return redirect()->route('stocks-out.index')->with('message', 'Stocks Added');
+        return redirect()->route('multiple.out')->with('message', 'Stocks Added: ' . $request->input('int_no'));
         // return view('stocks.in.multiple');
     }
 }

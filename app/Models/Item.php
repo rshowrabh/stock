@@ -41,4 +41,11 @@ class Item extends Model
     {
     return ($this->stocksIn->sum('quantity')- $this->stocksOut->sum('quantity'));
     }
+    protected static function booted()
+    {
+        static::deleting(function ($items) {
+            $items->stocksIn()->delete();
+            $items->stocksOut()->delete();
+        });
+    }
 }

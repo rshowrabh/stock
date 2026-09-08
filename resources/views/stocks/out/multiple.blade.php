@@ -3,8 +3,18 @@
 @section('title')
     <h3>Requisition Input Multiple Item</h3>
 @endsection
-
+ 
 @section('content')
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+    @error('name')
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </div>
+    @enderror
     <div class="container">
         <form enctype="multipart/form-data" method="POST" action="{{ route('stocks-out.multiple') }}">
             @csrf
@@ -15,7 +25,7 @@
                       </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <input name="int_no" required type="name" class="form-control" id="name" placeholder="Int no">
+                    <input name="int_no" required type="name" max="9999999" class="form-control" id="name" placeholder="Int no">
                 </div>
                 <div class="form-group col-md-4">
                     <input name="date" required type="date" class="form-control" id="inputDate" placeholder="Date">

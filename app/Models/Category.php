@@ -18,4 +18,5 @@ class Category extends Model
     function stocksIn(){
         return $this->hasMany('App\StocksIn');
     }
+   
 }
