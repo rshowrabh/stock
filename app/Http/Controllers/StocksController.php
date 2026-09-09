@@ -7,6 +7,8 @@ use App\Models\Item;
 use App\Models\StocksIn;
 use App\Models\StocksOut;
 use Barryvdh\DomPDF\Facade\PDF;
+use App\Exports\ItemsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StocksController extends Controller
 {
@@ -29,10 +31,19 @@ class StocksController extends Controller
         return response()->json($data);
         
     }
-    // Generate PDF
+    // Controller Generate PDF 
     public function createPDF() {
        $datas = Item::all()->sortBy('name');
        $pdf = PDF::loadView('inc.pdf', compact('datas'));
        return $pdf->download(date('Y-m-d-H-i-s').'.pdf');
       }
+      
+      // Controller Generate Excell
+      public function exportExcel()
+        {
+            return Excel::download(
+                new ItemsExport,
+                'items-' . now()->format('Y-m-d-H-i-s') . '.xlsx'
+            );
+        }
 }

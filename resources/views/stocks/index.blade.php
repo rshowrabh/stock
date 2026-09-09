@@ -35,7 +35,10 @@
           </form>
         </div>
         <div class="col-7 text-right">
-          <a href="{{route('pdf')}}" class="btn btn-primary">Export to PDF</a>
+          <a href="{{route('pdf')}}" class="btn btn-primary">Export to PDF</a> 
+        </div>
+        <div class="col-7 text-right">
+          <a href="{{route('items.export.excel')}}" class="btn btn-success"> Export Excel </a>
         </div>
       </div>
         <div class="d-flex justify-content-center">
