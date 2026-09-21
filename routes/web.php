@@ -37,6 +37,7 @@ Route::get('/search-out-date', [App\Http\Controllers\StocksOutController::class,
 Route::get('/search-out-int', [App\Http\Controllers\StocksOutController::class, 'search_out_int'])->middleware('auth')->name('search.out.int');
 Route::get('/search-member-item', [App\Http\Controllers\StocksOutController::class, 'search_member_item'])->middleware('auth')->name('search.memeber.item');
 Route::get('/search-item-date', [App\Http\Controllers\StocksOutController::class, 'index_advance_pdf'])->middleware('auth')->name('search.item.date');
+Route::get('/search-item-date-excell', [App\Http\Controllers\StocksOutController::class, 'index_advance_excel'])->middleware('auth')->name('search.item.date.excell');
 Route::get('/search-member-item-inex', [App\Http\Controllers\StocksOutController::class, 'index_advance_search'])->middleware('auth')->name('stocks-out.index.advance_search'); 
 Route::get('/category-list', [App\Http\Controllers\CategoriesController::class, 'list'])->middleware('auth')->name('category.list');
 Route::resource('/member', App\Http\Controllers\MemberController::class)->middleware('auth');
@@ -56,4 +57,4 @@ Route::post('/multiple-in-store', [App\Http\Controllers\StocksInController::clas
 
 Route::get('/multiple-out', [App\Http\Controllers\StocksOutController::class, 'multiple_out'])->name('multiple.out');
 Route::post('/multiple-out-store', [App\Http\Controllers\StocksOutController::class, 'multiple_out_store'])->name('stocks-out.multiple');
-
+Route::get('/stocks-out-download-all-excel',[\App\Http\Controllers\StocksOutController::class, 'download_all_excel'])->name('stocks-out.download-all-excel');
